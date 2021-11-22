@@ -1,0 +1,29 @@
+
+{% extends 'assignment/base/base.html' %}
+
+{% load static %}
+
+{% block title %}All Assignments{% endblock %}
+
+{% block site_css %}
+  <link rel="stylesheet" href="{% static 'assignment/styles/all-assignments.css' %}">
+{% endblock %}
+   
+{% block main_heading %}
+We got some great assignment coming up!
+{% endblock %}
+
+{% block header_content %}
+<p>Find the one that best suits your needs!</p>
+{% endblock %}
+
+{% block body %}
+<section>
+  <h2>assignments</h2>
+  <ol>
+    {% for assignment_item in assignments %}
+      {% include 'assignment/includes/assignment-item.html' with title=assignment_item.title location='New York' slug=assignment_item.slug %}
+    {% endfor %}
+  </ol>
+</section>
+{% endblock %}

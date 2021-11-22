@@ -1,0 +1,53 @@
+{% extends 'assignment/base/base.html' %}
+
+{% load static %}
+
+{% block title %}
+  {{ assignment.title }}
+{% endblock %}
+
+{% block site_css %}
+  <link rel="stylesheet" href="{% static 'assignment/styles/assignment-details.css' %}">
+{% endblock %}
+
+{% block main_heading %}
+  {{ assignment.title }}
+{% endblock %}
+
+{% block body %}
+
+{% if assignment_found %}
+<article>
+  
+  <section id="location">
+    <h2>Assignment Location</h2>
+    <address>This assignment takes place in <span>location</span> adress</address>
+  </section>
+
+  <section id="details">
+    <h2>What's This assignment About?</h2>
+    <p>{{ assignment.description }}</p>
+    <footer>
+      <p>Need more details? Please call 911 </p>
+    </footer>
+  </section>
+
+  <section id="registration">
+    <h2>Join Us!</h2>
+    <form action="{% url 'assignment-detail'assignment.slug %}" method="POST">
+      {% csrf_token %}
+      <ul>
+        {{ form.as_ul }}
+      </ul>
+      <div id="registration-actions">
+        <button>Register</button>
+      </div>
+    </form>
+  </section>
+</article>
+{% else %}
+<p>No meetup found for this slug, sorry!</p>
+{% endif %}
+
+{% endblock %}
+    
