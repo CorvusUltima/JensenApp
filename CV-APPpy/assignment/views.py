@@ -11,14 +11,17 @@ def index(request):
                   {'isActive': True, 'assignments': assignments})
 
 
-def assignment_details(request, slug):
-    print(assignment_slug)
-    assignment_selected = {
-        'title': slug + " assignment",
-        'description': 'just some empty hard coded data for testing '
-    }
+def assignment_details(request, assignment_slug):
+   try:
+        assignment= Assignment.objects.get(slug=assignment_slug)
 
-    return render(request, 'assignment/assignment-details.html',
-                  {'assignment_title': assignment_selected['title'],
-                   'assignment_description': assignment_selected['description']
+        return render(request, 'assignment/assignment-details.html',
+                  {    'assignment_found': True,
+                      'assignment_title': assignment.title,
+                      'assignment_description': assignment.description
+                   })
+   except Exception as exc:
+        return renderd(request, 'assignment/assignment-details.html',
+                  { 'assignment_found': False,
+                   
                    })
