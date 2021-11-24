@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .models import Assignment
+from django.shortcuts import render, redirect
+from .models import Assignment, Applicant
 from .forms import RegistrationForm
 
 # Create your views here.
@@ -21,17 +21,22 @@ def assignment_details(request, assignment_slug):
           else:
                registration_form = RegistrationForm(request.POST)
                if registration_form.is_valid():
-                   applicant = registration_form.save()
+                   user_email= registration_form.cleaned_data['email']
+                   applicant, _ =Applicant.objects.get_or_create(email=user_email)
                    assignment.applicant.add(applicant)
+                   return redirect('confirm-registration')
 
           return render(request, 'assignment/assignment-details.html',
                          {    'assignment_found': True,
                               'assignment': assignment ,
-                              'form': registration_form
+                              'form':  registration_form
                           })
                                        
     except Exception as exc:
-         return renderd(request, 'assignment/assignment-details.html',
-                  { 'assignment_found': False,
-                   
+         print(exc)
+         return render(request, 'assignment/assignment-details.html',
+                  { 'assignment_found': False
                    })
+
+def registration_confirmation(request):
+    return render(request, 'assignment/registration-success.html')

@@ -1,8 +1,6 @@
 from django import forms
 
-from .models import Applicant
-
-class RegistrationForm(forms.ModelForm):
-	class Meta:
-		model = Applicant
-		fields = [ 'email', 'first_name', 'last_name' ]
+class RegistrationForm(forms.Form):
+	email = forms.EmailField(label ='your email')
+	first_name =forms.CharField(label ='your first name', max_length =200)
+	last_name =forms.CharField(label ='your last name', max_length =200)

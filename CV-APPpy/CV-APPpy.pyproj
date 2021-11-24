@@ -80,7 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assignment\static\assignment\styles\all-assignments.css" />
-    <Content Include="assignment\static\assignment\styles\registration-success-style.css">
+    <Content Include="assignment\static\assignment\styles\registration.css">
       <SubType>Code</SubType>
     </Content>
     <Content Include="assignment\templates\assignment\assignment-details.html">
