@@ -1,0 +1,25 @@
+{% extends 'assignment/base/base.html'  %}
+{% load static %}
+
+{% block title %} You have successfully registered  {% endblock %}
+
+{% block sity_css %}
+
+{% endblock %}
+
+{% block main_heading %} Thanks for signing up ! {% endblock %}
+
+
+{% block body %}
+<section id="confirmation">
+    <h2> Registration completed successfully </h2>
+    <p> Thanks for signing upp!</p>
+
+</section>
+
+<section id="continue">
+    <p> See other open positions</p>
+    <p><a href="/assignment" class="btn"> Explore other assignments </a> </p>
+</section>
+
+{% endblock %}

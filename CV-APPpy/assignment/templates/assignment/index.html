@@ -22,7 +22,7 @@ We got some great assignment coming up!
   <h2>assignments</h2>
   <ol>
     {% for assignment_item in assignments %}
-      {% include 'assignment/includes/assignment-item.html' with title=assignment_item.title location='New York' slug=assignment_item.slug %}
+      {% include 'assignment/includes/assignment-item.html' with title=assignment_item.title location=assignment_item.location.name slug=assignment_item.slug %}
     {% endfor %}
   </ol>
 </section>

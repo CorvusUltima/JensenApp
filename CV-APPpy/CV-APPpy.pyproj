@@ -40,6 +40,9 @@
     <Compile Include="app\migrations\__init__.py" />
     <Compile Include="assignment\admin.py" />
     <Compile Include="assignment\apps.py" />
+    <Compile Include="assignment\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="assignment\migrations\__init__.py" />
     <Compile Include="assignment\models.py" />
     <Compile Include="assignment\urls.py">
@@ -77,6 +80,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="assignment\static\assignment\styles\all-assignments.css" />
+    <Content Include="assignment\static\assignment\styles\registration-success-style.css">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="assignment\templates\assignment\assignment-details.html">
       <SubType>Code</SubType>
     </Content>
@@ -89,6 +95,7 @@
     <Content Include="assignment\templates\assignment\index.html" />
     <Content Include="assignment\static\assignment\styles\base.css" />
     <Content Include="assignment\static\assignment\styles\details.css" />
+    <Content Include="assignment\templates\assignment\registration-success.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />

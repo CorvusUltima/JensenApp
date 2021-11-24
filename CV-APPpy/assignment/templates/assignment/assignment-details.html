@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block main_heading %}
-  {{ assignment_title }}
+  {{ assignment.title }}
 {% endblock %}
 
 {% block body %}
@@ -21,15 +21,28 @@
   
   <section id="location">
     <h2>Assignment Location</h2>
-    <address>This assignment takes place in <span>location</span> adress</address>
+    <address>This assignment takes place in <span>{{ assignment.location.name }} </span>  {{ assignment.location.adress }}. </address>
   </section>
 
   <section id="details">
     <h2>What's This assignment About?</h2>
-    <p>{{ assignment_description }}</p>
+    <p>{{ assignment.description }}</p>
     <footer>
       <p>Need more details? Please call 911 </p>
     </footer>
+  </section>
+    
+  <section id="registration">
+    <h2>Join Us</h2>
+     <form action=" {% url 'assignment-details' assignment.slug %} " method="POST">
+      {% csrf_token %}
+      <u>
+       {{ form.as_ul }}
+      </u>
+         <div id="registration-actions">
+             <button> Registrate</button>
+         </div>
+     </form>
   </section>
 
   

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Assignment
+from .forms import RegistrationForm
 
 # Create your views here.
 
@@ -12,16 +13,25 @@ def index(request):
 
 
 def assignment_details(request, assignment_slug):
-   try:
-        assignment= Assignment.objects.get(slug=assignment_slug)
+    try: 
+          assignment= Assignment.objects.get(slug=assignment_slug)
+          if  request.method == 'GET':
+               registration_form = RegistrationForm()
+            
+          else:
+               registration_form = RegistrationForm(request.POST)
+               if registration_form.is_valid():
+                   applicant = registration_form.save()
+                   assignment.applicant.add(applicant)
 
-        return render(request, 'assignment/assignment-details.html',
-                  {    'assignment_found': True,
-                      'assignment_title': assignment.title,
-                      'assignment_description': assignment.description
-                   })
-   except Exception as exc:
-        return renderd(request, 'assignment/assignment-details.html',
+          return render(request, 'assignment/assignment-details.html',
+                         {    'assignment_found': True,
+                              'assignment': assignment ,
+                              'form': registration_form
+                          })
+                                       
+    except Exception as exc:
+         return renderd(request, 'assignment/assignment-details.html',
                   { 'assignment_found': False,
                    
                    })
