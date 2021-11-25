@@ -3,6 +3,9 @@ from .models import Assignment, Applicant
 from .forms import RegistrationForm
 
 # Create your views here.
+def home(request):
+    return(request,'assignment/home.html')
+
 
 def index(request):
    

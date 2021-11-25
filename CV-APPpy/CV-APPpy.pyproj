@@ -89,6 +89,7 @@
     <Content Include="assignment\templates\assignment\base\base.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="assignment\templates\assignment\home.html" />
     <Content Include="assignment\templates\assignment\includes\assignment-item.html">
       <SubType>Code</SubType>
     </Content>
