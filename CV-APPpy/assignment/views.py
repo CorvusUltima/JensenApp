@@ -3,8 +3,22 @@ from .models import Assignment, Applicant
 from .forms import RegistrationForm
 
 # Create your views here.
-def home(request):
-    return(request,'assignment/home.html')
+def form(request, assignment_slug='test-03'):
+    assignment= Assignment.objects.get(slug=assignment_slug)
+    form=RegistrationForm(request.POST)
+    if form.is_valid():
+         user_email=form.cleaned_data['email']
+         print( user_email)
+         applicant, _ =Applicant.objects.get_or_create(email=user_email)
+         print( applicant.first_name)
+         assignment.applicant.add(applicant)
+         return redirect('confirm-registration')
+        
+       
+
+    context={'form':form}
+    context_slug={'assignment': assignment}
+    return render(request,'assignment/applicant-form.html', context,context_slug)
 
 
 def index(request):

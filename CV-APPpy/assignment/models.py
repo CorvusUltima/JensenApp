@@ -17,8 +17,6 @@ class Applicant(models.Model):
     str= self.first_name +' '+ self.last_name
     return str 
 
-
-
 class Assignment(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
