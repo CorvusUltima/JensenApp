@@ -3,15 +3,21 @@ from .models import Assignment, Applicant
 from .forms import RegistrationForm
 
 # Create your views here.
-def form(request, assignment_slug='test-03'):
+def form(request, assignment_slug):
     assignment= Assignment.objects.get(slug=assignment_slug)
     form=RegistrationForm(request.POST)
     if form.is_valid():
          user_email=form.cleaned_data['email']
-         print( user_email)
-         applicant, _ =Applicant.objects.get_or_create(email=user_email)
-         print( applicant.first_name)
+         applicant,_ =Applicant.objects.get_or_create(email=user_email)
+
+         applicant.email=user_email
+         applicant.first_name=form.cleaned_data['first_name']
+         applicant.last_name=form.cleaned_data['last_name']
+         print(applicant.first_name)
+         applicant.save()
          assignment.applicant.add(applicant)
+         print('ovde sam ? ')
+         print('name'+ applicant.first_name)
          return redirect('confirm-registration')
         
        

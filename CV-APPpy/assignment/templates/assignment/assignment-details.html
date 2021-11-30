@@ -36,7 +36,7 @@
     <h2>Join Us</h2>
      <form action=" {% url 'assignment-details' assignment.slug %} " method="POST">
         <div class="assignment-actions">
-           <a href="applicant-form"  class="btn">Sign up</a>
+           <a href={% url 'applicant-form' assignment.slug %}  class="btn">Sign up</a>
         </div>
      </form>
   </section>

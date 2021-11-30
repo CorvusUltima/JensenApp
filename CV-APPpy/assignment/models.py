@@ -14,7 +14,7 @@ class Applicant(models.Model):
    email=models.EmailField(unique=True)
    
    def __str__(self):
-    str= self.first_name +' '+ self.last_name
+    str= self.first_name 
     return str 
 
 class Assignment(models.Model):
