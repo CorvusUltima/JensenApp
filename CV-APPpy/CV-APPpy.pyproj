@@ -79,6 +79,7 @@
     <Folder Include="CV_APPpy\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\templates\app\login_registrate00.html" />
     <Content Include="assignment\static\assignment\styles\all-assignments.css" />
     <Content Include="assignment\static\assignment\styles\registration.css">
       <SubType>Code</SubType>
@@ -97,6 +98,8 @@
     <Content Include="assignment\static\assignment\styles\base.css" />
     <Content Include="assignment\static\assignment\styles\details.css" />
     <Content Include="assignment\templates\assignment\registration-success.html" />
+    <Content Include="app\templates\app\home.html" />
+    <Content Include="app\templates\app\navbar.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />
@@ -126,7 +129,7 @@
     <Content Include="app\templates\app\index.html" />
     <Content Include="app\templates\app\layout.html" />
     <Content Include="app\templates\app\login.html" />
-    <Content Include="app\templates\app\loginpartial.html" />
+    <Content Include="app\templates\app\login_registrate.html" />
   </ItemGroup>
   <ItemGroup>
     <None Include="readme.html">

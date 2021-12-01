@@ -1,0 +1,37 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div>
+
+<form METHOD="POST" action="">
+     {% csrf_token %}
+
+    <label>Username :</label>
+    <input type="text" name="username" placeholder="Enter Username"/>
+
+     <label>Password :</label>
+    <input type="password" name="password" placeholder="Enter Password"/>
+
+    <input type="submit" value="Login"/>
+
+</form>
+   
+</div>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+
+{% load staticfiles %}
+<script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
+
+{% endblock %}
