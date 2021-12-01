@@ -7,6 +7,7 @@ from django.shortcuts import render , redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login ,logout
+from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpRequest
 
 def home(request):
@@ -22,6 +23,11 @@ def home(request):
     )
 
 def login_page(request):
+    page = 'login'
+    print(page)
+
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method=='POST':   
         username=request.POST.get('username')
         pasword=request.POST.get('password')
@@ -41,10 +47,20 @@ def login_page(request):
              messages.error(request,'username or password does not exist ')
 
 
-    context={}
-    return render(request,'app/login_registrate00.html')
+    context={'page' : page}
+    print(context)
+    return render(request,'app/login_registrate00.html',context)
 
+def logout_page(request):
+    logout(request)
+    return redirect('home')
 
+def register_page(request):
+    page='register'
+    form= UserCreationForm()
+    return render (request,'app/login_registrate00.html',{'form':form})
+    
+    
 def contact(request):
     """Renders the contact page."""
     assert isinstance(request, HttpRequest)
