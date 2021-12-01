@@ -15,9 +15,15 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('contact/', views.contact, name='contact'),
     path('about/', views.about, name='about'),
+
     path('login/',views.login_page, name='login'),
-    path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
+
+    path('logout/', views.logout_page, name='logout'),
+
+    path('register/',views.register_page, name='register'),
+
     path('admin/', admin.site.urls),
+    
     path('', include('assignment.urls')),
 
 

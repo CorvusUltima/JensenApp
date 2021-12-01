@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} -CV APP Application</title>
+    <title>{{ title }} CV APP Application</title>
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
@@ -30,8 +30,12 @@
                 </ul>
                 <div>
                     <ul class="nav navbar-nav navbar-right">
-                     <li><a href="{% url 'login' %}">Login </a></li>
-                     <li><a href="{% url 'login' %}">Register</a></li>
+                      {% if request.user.is_authenticated %}
+                     <li><a href="{% url 'logout' %}">Logout </a></li>
+                      {% else %}
+                      <li><a href="{% url 'login' %}">Login </a></li>
+                      {% endif  %}
+                     
                      </ul>
                 </div>
                  

@@ -2,30 +2,45 @@
 
 {% block content %}
 
-<div>
 
-<form METHOD="POST" action="">
-     {% csrf_token %}
 
-    <label>Username :</label>
-    <input type="text" name="username" placeholder="Enter Username"/>
 
-     <label>Password :</label>
-    <input type="password" name="password" placeholder="Enter Password"/>
+<div>  
+    {% if page == 'login' %}
+    <div>
+        <form METHOD="POST" action="">
+            {% csrf_token %}
 
-    <input type="submit" value="Login"/>
+            <label>Username :</label>
+            <input type="text" name="username" placeholder="Enter Username"/>
 
-</form>
-   
+            <label>Password :</label>
+            <input type="password" name="password" placeholder="Enter Password"/>
+
+            <input type="submit" value="Login"/>
+
+        </form>
+
+        <p> Havent sign up yet ?  </p>
+        <a href="{% url 'register' %}">Sign up !</a>
+
+        {% else %}
+
+        <p> You are signd up? log in   </p>
+        <a href="{% url 'login' %}">Log in  !</a>
+        <input type="submit" value="Register"/>
+
+
+
+    </div>
+    
+    {% endif %}
+    
+
+            
+
 </div>
 
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
 
 {% endblock %}
 
