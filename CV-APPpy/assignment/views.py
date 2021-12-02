@@ -3,6 +3,9 @@ from .models import Assignment, Applicant
 from .forms import RegistrationForm
 
 # Create your views here.
+def HomePage(request):
+    return render(request,'assignment/applicant-form.html')
+
 def form(request, assignment_slug):
     assignment= Assignment.objects.get(slug=assignment_slug)
     form=RegistrationForm(request.POST)

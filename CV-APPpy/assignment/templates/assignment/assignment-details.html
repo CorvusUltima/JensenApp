@@ -1,4 +1,4 @@
-{% extends 'assignment/base/base.html' %}
+{% extends "app/layout.html" %}
 
 {% load static %}
 
@@ -14,7 +14,7 @@
   {{ assignment.title }}
 {% endblock %}
 
-{% block body %}
+{% block content %}
 
 {% if assignment_found %}
 <article>
@@ -36,7 +36,7 @@
     <h2>Join Us</h2>
      <form action=" {% url 'assignment-details' assignment.slug %} " method="POST">
         <div class="assignment-actions">
-           <a href={% url 'applicant-form' assignment.slug %}  class="btn">Sign up</a>
+           <a href="{% url 'applicant-form' assignment.slug %}" class="btn">Applay</a>
         </div>
      </form>
   </section>

@@ -1,0 +1,68 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div>  
+    {% if page == 'login' %}
+    <div>
+        <form METHOD="POST" action="">
+            {% csrf_token %}
+
+            <label>Username :</label>
+            <input type="text" name="username" placeholder="Enter Username"/>
+
+            <label>Password :</label>
+            <input type="password" name="password" placeholder="Enter Password"/>
+
+            <input type="submit" value="Login"/>
+
+        </form>
+
+        <p> Havent sign up yet ?  </p>
+        <a href="{% url 'register' %}">Sign up !</a>
+
+        {% else %}
+        <div>
+
+            <form METHOD="POST" action="">
+                {% csrf_token %}
+                
+                {{form.as_p}}
+               
+                <input type="submit" value="Register"/>
+                <p> You are signd up? log in   </p>
+                <a href="{% url 'login' %}">Log in  !</a>
+            </form>
+
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+
+        </div>
+        
+
+    </div>
+    
+       
+
+    {% endif %}
+    
+
+            
+
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+
+{% load staticfiles %}
+<script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
+
+{% endblock %}
