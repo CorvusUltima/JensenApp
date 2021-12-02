@@ -2,9 +2,6 @@
 
 {% block content %}
 
-
-
-
 <div>  
     {% if page == 'login' %}
     <div>
@@ -25,15 +22,34 @@
         <a href="{% url 'register' %}">Sign up !</a>
 
         {% else %}
+        <div>
 
-        <p> You are signd up? log in   </p>
-        <a href="{% url 'login' %}">Log in  !</a>
-        <input type="submit" value="Register"/>
+            <form METHOD="POST" action="">
+                {% csrf_token %}
+                
+                {{form.as_p}}
+               
+                <input type="submit" value="Register"/>
+                <p> You are signd up? log in   </p>
+                <a href="{% url 'login' %}">Log in  !</a>
+            </form>
+
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
 
 
+        </div>
+        
 
     </div>
     
+       
+
     {% endif %}
     
 

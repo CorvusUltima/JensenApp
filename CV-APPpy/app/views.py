@@ -56,8 +56,19 @@ def logout_page(request):
     return redirect('home')
 
 def register_page(request):
-    page='register'
     form= UserCreationForm()
+
+    if request.method=='POST':
+        form =  UserCreationForm(request.POST)
+        if form.is_valid():
+            user=form.save(commit=False)
+            user.username=user.username.lower()
+            user.save()
+            login(request,user)
+            redirect('home')
+        else :
+            messages.error(request)
+
     return render (request,'app/login_registrate00.html',{'form':form})
     
     
