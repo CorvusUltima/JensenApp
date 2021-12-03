@@ -11,7 +11,7 @@ ol {
 
 .assignment-item {
   margin: 1rem 0;
-  background-color: #350490;
+  background-color: #279fe4;
   padding: 2rem;
   color: white;
   border-radius: 4px;
@@ -50,12 +50,12 @@ ol {
 }
 
 .assignment-actions .btn {
-  background-color: #cb82fb;
-  border-color: #cb82fb;
+  background-color: #2136f8;
+  border-color: #0db7eb;
   color: #350490;
   padding: 0.75rem 2rem;
 }
 
 .assignment-actions .btn:hover {
-  background-color: #ba82fb;
-  border-color: #ba82f
+  background-color: #17a2f3;
+  border-color:#0db7eb;

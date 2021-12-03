@@ -2,13 +2,11 @@
 
 {% load static %}
 
+
 {% block title %}
   {{ assignment.title }}
 {% endblock %}
 
-{% block site_css %}
-  <link rel="stylesheet" href="{% static 'assignment/styles/details.css' %}">
-{% endblock %}
 
 {% block main_heading %}
   {{ assignment.title }}
@@ -20,12 +18,12 @@
 <article>
   
   <section id="location">
-    <h2>Assignment Location</h2>
+    <h3>Assignment Location</h3>
     <address>This assignment takes place in <span>{{ assignment.location.name }} </span>  {{ assignment.location.adress }}. </address>
   </section>
 
   <section id="details">
-    <h2>What's This assignment About?</h2>
+    <h3>What's This assignment About?</h3>
     <p>{{ assignment.description }}</p>
     <footer>
       <p>Need more details? Please call 911 </p>

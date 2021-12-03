@@ -3,8 +3,7 @@ from .models import Assignment, Applicant
 from .forms import RegistrationForm
 
 # Create your views here.
-def HomePage(request):
-    return render(request,'assignment/applicant-form.html')
+
 
 def form(request, assignment_slug):
     assignment= Assignment.objects.get(slug=assignment_slug)
@@ -41,21 +40,9 @@ def index(request):
 def assignment_details(request, assignment_slug):
     try: 
           assignment= Assignment.objects.get(slug=assignment_slug)
-          if  request.method == 'GET':
-               registration_form = RegistrationForm()
-            
-          else:
-               registration_form = RegistrationForm(request.POST)
-               if registration_form.is_valid():
-                   user_email= registration_form.cleaned_data['email']
-                   applicant, _ =Applicant.objects.get_or_create(email=user_email)
-                   assignment.applicant.add(applicant)
-                   return redirect('confirm-registration')
-
           return render(request, 'assignment/assignment-details.html',
                          {    'assignment_found': True,
-                              'assignment': assignment ,
-                              'form':  registration_form
+                              'assignment': assignment 
                           })
                                        
     except Exception as exc:
@@ -66,3 +53,6 @@ def assignment_details(request, assignment_slug):
 
 def registration_confirmation(request):
     return render(request, 'assignment/registration-success.html')
+
+def user_home_page(request):
+    return render(request,'assignment/profile.html')

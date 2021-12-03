@@ -1,16 +1,14 @@
-{% extends 'assignment/base/base.html' %}
+
+{% extends "app/layout.html" %}
 
 {% load static %}
 
 {% block title %}You registered successfully!{% endblock %}
 
-{% block site_css %}
-<link rel="stylesheet" href="{% static 'assignment/styles/registration.css' %}">
-{% endblock %}
 
 {% block main_heading %}Thanks for signing up!{% endblock %}
 
-{% block body %}
+{% block content %}
 <section id="confirmation">
   <h2>You registered successfully!</h2>
   <p>Thanks for signing up </p>
@@ -18,7 +16,7 @@
 </section>
 
 <section id="continue">
-  <p>Of course you can sign up for more than one assignment!</p>
-  <p><a href="/meetups" class="btn">Explore our assaignments</a></p>
+  <p> Sign up for more??</p>
+  <p><a href="/assignment" class="btn">Explore our assaignments</a></p>
 </section>
 {% endblock %}

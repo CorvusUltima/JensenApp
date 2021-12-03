@@ -1,13 +1,13 @@
 
-{% extends 'assignment/base/base.html' %}
+{% extends "app/layout.html" %}
 
 {% load static %}
 
 
 {% block title %} Form Page {% endblock %}
+{% block main_heading %}   {{ assignment.title }}    {% endblock %}
  
-{% block main_heading %}
-
+{% block content %}
 <section id="registration">
   <div class="container">
     <form  method="POST">
