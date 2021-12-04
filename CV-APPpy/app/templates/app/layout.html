@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} CV APP Application</title>
-    {% load staticfiles %}
+    {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
     <link rel="stylesheet" href="{% static 'assignment/styles/details.css' %}">
@@ -33,8 +33,8 @@
                     <ul class="nav navbar-nav navbar-right">
                       {% if request.user.is_authenticated %}
                       <li><a href="{% url 'profile' %}">{{ user.username}} </a></li>
-                     <li><a href="{% url 'logout' %}">Logout </a></li>
-                     
+                      <li><a href="{% url 'logout' %}">Logout </a></li>
+
                       {% else %}
                       <li><a href="{% url 'login' %}">Login </a></li>
                       {% endif  %}
