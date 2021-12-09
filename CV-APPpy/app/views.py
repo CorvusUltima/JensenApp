@@ -67,7 +67,7 @@ def register_page(request):
             login(request,user)
             redirect('home')
         else :
-            messages.error(request)
+            messages.error(request,'message')
 
     return render (request,'app/login_registrate00.html',{'form':form})
     

@@ -26,6 +26,8 @@ urlpatterns = [
     
     path('', include('assignment.urls')),
 
+    path('', include('user_profile.urls')),
+
 
    
 

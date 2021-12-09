@@ -1,2 +1,14 @@
 
 {% extends "app/layout.html" %}
+
+{% block content %}
+<h1> Create Assignment</h1>
+<div>
+<form method="POST" action="">
+   {% csrf_token %}
+   {{ form.as_ul }}
+   <input type="submit" value ="Submit"/>
+</form>
+
+</div>
+{% endblock %}
