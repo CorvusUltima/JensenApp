@@ -27,6 +27,16 @@ def index(request):
     return render(request, 'assignment/index.html',
                   {'isActive': True, 'assignments': assignments})
 
+
+def get_all_user_assignments(request):
+    assignments = []
+    for assignment in Assignment.objects.filter(host=request.user):
+        assignments.append(assignment)
+    context={'assignments':assignments}
+    return render(request,'profile',context)
+
+
+
 def create_assignment(request):
     form = AssignmentForm()
     if request.method=='POST':
@@ -58,6 +68,8 @@ def assignment_details(request, assignment_slug):
          return render(request, 'assignment/assignment-details.html',
                   { 'assignment_found': False
                    })
+
+
 
 
 def registration_confirmation(request):
