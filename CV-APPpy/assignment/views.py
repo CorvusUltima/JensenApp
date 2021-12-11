@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Assignment, Applicant
+from .models import Assignment, Applicant, Location
 from .forms import RegistrationForm ,AssignmentForm
 
 # Create your views here.
@@ -11,10 +11,7 @@ def apply(request, assignment_slug):
     form = RegistrationForm(request.POST)
 
     if form.is_valid():
-        print('usli smo u if  ')
-        user_email = form.cleaned_data['email']
-        applicant, _ = Applicant.objects.get_or_create(email=user_email)
-        applicant.first_name=form.cleaned_data['first_name']
+        applicant,_ = Applicant.objects.get_or_create(**form.cleaned_data)
         assignment.applicant.add(applicant)
         return redirect('confirm-registration')
      
@@ -35,7 +32,11 @@ def create_assignment(request):
     if request.method=='POST':
         form=AssignmentForm(request.POST)
         if form.is_valid():
-            form.save()
+           assignment=form.save(commit= False)
+           assignment.host=request.user
+           assignment.slug=assignment.title.lower().replace(' ', '-')
+           assignment.save()
+           
         return redirect('profile')
     context={'form':form}
     return render(request,'assignment/create-assignment.html',context)
@@ -62,6 +63,4 @@ def assignment_details(request, assignment_slug):
 def registration_confirmation(request):
     return render(request, 'assignment/registration-success.html')
 
-def user_home_page(request):
-    return render(request,'assignment/profile.html')
 

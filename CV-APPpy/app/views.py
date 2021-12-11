@@ -48,7 +48,6 @@ def login_page(request):
 
 
     context={'page' : page}
-    print(context)
     return render(request,'app/login_registrate00.html',context)
 
 def logout_page(request):

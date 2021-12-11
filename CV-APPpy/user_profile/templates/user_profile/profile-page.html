@@ -1,9 +1,67 @@
 {% extends "app/layout.html" %}
 
+
+
+<style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    /* Create three unequal columns that floats next to each other */
+    .column {
+      float: left;
+      padding: 5%;
+     
+    }
+    
+    .left, .right {
+      width: 25%;
+    }
+    
+    .middle {
+      width: 50%;
+    }
+    
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    </style>
+
 {% block content %}
 <h1>User Home page</h1>
-<div>
-    <a href="{% url 'create-assignment' %}" class="btn">Create Assignment</a>
-</div>
+{% if request.user.is_staff %}
+<div class="row">
+    <div class="column left" >
+      <h2>Column 1</h2>
+      <p>Some text..</p>
+    </div>
+    <div class="column middle" >
+      <h2>Column 2</h2>
+      <a href="{% url 'create-assignment' %}">Create Assignment</a>
+    </div>
+    <div class="column right" >
+      <h2>Column 3</h2>
+      <p>Some text..</p>
+    </div>
+  </div>
+{% else %}
+<div class="row">
+    <div class="column left" >
+      <h2>Column 1</h2>
+      <p>Some text..</p>
+    </div>
+    <div class="column middle" >
+      <h2>Column 2</h2>
+      <p>Some text..</p>
+    </div>
+    <div class="column right" >
+      <h2>Column 3</h2>
+      <p>Some text..</p>
+    </div>
+  </div>
+{% endif %}
 
 {% endblock  %}

@@ -26,7 +26,7 @@ urlpatterns = [
     
     path('', include('assignment.urls')),
 
-    path('', include('user_profile.urls')),
+    path('profile/', include('user_profile.urls')),
 
 
    

@@ -12,6 +12,8 @@ class AssignmentForm(ModelForm):
     class Meta:
         model=Assignment
         fields='__all__'
+        exclude = ('host', 'applicant','slug')
+        
 
 
 
