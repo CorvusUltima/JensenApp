@@ -8,12 +8,78 @@
 
 
 {% block content %}
-<section>
-  <h2>Assignments </h2>
-  <ol>
+
+  <!-- Main Section -->
+  <main class="projects">
+    <section class="hero-section text-center">
+      <div class="container container--narrow">
+        <div class="hero-section__box">
+          <h2>Search for <span>Assignments</span></h2>
+        </div>
+
+        <div class="hero-section__search">
+          <form class="form" action="#" method="get">
+            <div class="form__field">
+              <label for="formInput#search">Search By Assignments </label>
+              <input class="input input--text" id="formInput#search" type="text" name="text"
+                placeholder="Search by Assignment Title" />
+            </div>
+
+            <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- Search Result: DevList -->
+
     {% for assignment_item in assignments %}
-      {% include 'assignment/includes/assignment-item.html' with title=assignment_item.title location=assignment_item.location.name slug=assignment_item.slug %}
+     
+    <section class="projectsList">
+      <div class="container">
+        <div class="grid grid--three">
+          <div class="column">
+            <div class="card project">
+              <a href="{% url 'assignment-details' assignment_item.slug %}" class="project">
+                <img class="project__thumbnail" src="images/project-a.png" alt="project thumbnail" />
+                <div class="card__body">
+                  <h3 class="project__title">{{ assignment_item.title}}</h3>
+                  <p><a class="project__author" href="profile.html">{{assignment_item.host}}</a></p>
+                  <div class="project__tags">
+                    
+                    {% for tag in assignment_item.tags.all %}
+                    <span class="tag tag--pill tag--main">
+                      <small>{{tag.name}}</small>
+                    </span>
+                    {% endfor %}
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>   
+    </section>
     {% endfor %}
-  </ol>
-</section>
+  
+    
+  </main>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}
