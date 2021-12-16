@@ -18,16 +18,11 @@
     <style>
         .home-container{
             display: grid;
-            grid-template-columns: 20% 60% 20%;
-            padding-left: 10px; 
-            
-            
-        
+            grid-template-columns: 20% 60% 20%;   
     }
     .grid-item {
-        display: grid;
-        align-items: center;
-        justify-items: center;
+       
+        justify-self: center;
       }      
     </style>
 
@@ -112,7 +107,6 @@
         <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
         <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
         <script src="{% static 'app/scripts/respond.js' %}"></script>
- 
 
  
     {% block scripts %}{% endblock %}

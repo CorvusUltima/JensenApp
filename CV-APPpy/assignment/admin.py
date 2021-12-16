@@ -3,6 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from .models import Assignment,Location,Applicant,Tag
 
+
 class AssignmentAdmin(admin.ModelAdmin):
 	list_display = ('title' , 'slug')
 	list_filter =  ('location',)

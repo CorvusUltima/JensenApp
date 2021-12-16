@@ -6,12 +6,14 @@
 <br>
 <br>
 {% if request.user.is_staff %}
+
 <div class="home-container" >
-      <div>
+
+      <div class="grid-item">
         <h4>  Browse Applicants </h4>  
       </div>
 
-    <div >
+    <div class="grid-item">
 
         <a href="{% url 'create-assignment' %}">Create new assignment</a>
         <br>
@@ -36,6 +38,22 @@
 
 {% else %}
 
+      <div class="home-container">
+
+            <div class="grid-item">
+                <h3>  Browse tab</h3>
+            </div>
+        
+            <div class="grid-item">
+                <h2>  Profile page </h2>
+                
+            </div>
+
+            <div class="grid-item">
+                <h3> Something tab</h3>
+            </div>
+
+      </div>
 
 {% endif %}
 
