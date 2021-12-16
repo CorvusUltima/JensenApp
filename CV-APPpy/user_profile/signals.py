@@ -24,9 +24,11 @@ def create_profile(sender, instance,created,**kwargs):
 
 def delete_profile(sender,instance,**kwargs):
     user=instance.user
-    user.delete()
-     
-    print('Profile Deleted')
+    if(user is not None):
+        user.delete()
+        print('User Deleted')
+    
+    print('user is NONE')
 
 
 

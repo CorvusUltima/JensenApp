@@ -5,6 +5,6 @@ from user_profile import views
 urlpatterns = [
    
     path('',views.profile_page, name='profile'),
-   
+    path('update/',views.profile_update, name='profile-update'),
 ]
 

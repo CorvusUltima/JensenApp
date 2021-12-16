@@ -46,7 +46,16 @@
         
             <div class="grid-item">
                 <h2>  Profile page </h2>
-                
+
+               <div>
+               <p>First name: {{profile.first_name}} </p>
+               <p>Last name: {{profile.last_name}} </p>
+               <p>About: {{profile.bio}} </p>
+
+               <a class="btn btn--sub btn--lg" href= "{% url 'profile-update' %}">Edit profile</a>
+               <a class="btn btn--sub btn--lg" href= "{% url 'profile-update' %}">Delete profile</a>
+               </div>
+
             </div>
 
             <div class="grid-item">
