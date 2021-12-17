@@ -56,12 +56,15 @@ def create_assignment(request):
 
 
 def assignment_details(request, assignment_slug):
+    view_all_applicants=True
+    context= {'view_applicants':view_all_applicants}
     try: 
           assignment= Assignment.objects.get(slug=assignment_slug)
           return render(request, 'assignment/assignment-details.html',
                          {    'assignment_found': True,
-                              'assignment': assignment 
-                          })
+                              'assignment': assignment ,
+                          'view_applicants':view_all_applicants}
+                          )
                                        
     except Exception as exc:
          print(exc)

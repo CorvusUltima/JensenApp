@@ -6,6 +6,8 @@
 
 {% block content %}
 
+<br>
+
 <div>  
     {% if page == 'login' %}
     <div>
@@ -13,12 +15,12 @@
             {% csrf_token %}
 
             <label>Username :</label>
-            <input type="text" name="username" placeholder="Enter Username"/>
+            <input class="btn btn--sub btn--lg" type="text" name="username" placeholder="Enter Username"/>
 
             <label>Password :</label>
-            <input type="password" name="password" placeholder="Enter Password"/>
+            <input  class="btn btn--sub btn--lg" type="password" name="password" placeholder="Enter Password"/>
 
-            <input type="submit" value="Login"/>
+            <input class="btn btn--sub btn--lg"  type="submit" value="Login"/>
 
         </form>
 
@@ -33,7 +35,7 @@
                 
                 {{form.as_p}}
                
-                <input type="submit" value="Register"/>
+                <input class="btn btn--sub btn--lg" type="submit" value="Register"/>
                 <p> You are signd up? log in   </p>
                 <a href="{% url 'login' %}">Log in  !</a>
             </form>

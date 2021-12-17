@@ -3,38 +3,69 @@
 
 
 {% block content %}
-<h1>User Home page</h1>
+
+
+<br>
+<br>
 {% if request.user.is_staff %}
-<div >
-    <div >
 
-      <a href="{% url 'create-assignment' %}">Create new assignment</a>
-      <hr>
-      <ul>
+<div class="home-container" >
 
-      {% for assignment in assignments %}
-        <li>Name:<a href="{% url 'assignment-details' assignment.slug %}">{{assignment.title}}</a> Location:{{assignment.location}} </li>
-      {% endfor %}
+      <div class="grid-item">
+        <h4>  Browse Applicants </h4>  
+      </div>
 
-    </ul>
+    <div class="grid-item">
+
+        <a href="{% url 'create-assignment' %}">Create new assignment</a>
+        <br>
+        <br>
+        <h4>All Assignments</h4>
+  
+        <ul>
+        {% for assignment in assignments %}
+          <li>Name: <a href="{% url 'assignment-details' assignment.slug %}">{{assignment.title}}</a></li>  
+          <li>Location: {{assignment.location}}  </li>
+          <li> <a href="{% url 'assignment-details' assignment.slug %}"> Applicants: {{ assignment.applicant.count }} </a></li>
+          <br>
+        {% endfor %}
+      </ul>
+
+    </div>
+
+    <div>
 
 
     </div>
+
 {% else %}
-<div class="row">
-    <div class="column left" >
-      <h2>Column 1</h2>
-      <p>Some text..</p>
-    </div>
-    <div class="column middle" >
-      <h2>Column 2</h2>
-      <p>Some text..</p>
-    </div>
-    <div class="column right" >
-      <h2>Column 3</h2>
-      <p>Some text..</p>
-    </div>
-  </div>
+
+      <div class="home-container">
+
+            <div class="grid-item">
+                <h3>  Browse tab</h3>
+            </div>
+        
+            <div class="grid-item">
+                <h2>  Profile page </h2>
+
+               <div>
+               <p>First name: {{profile.first_name}} </p>
+               <p>Last name: {{profile.last_name}} </p>
+               <p>About: {{profile.bio}} </p>
+
+               <a class="btn btn--sub btn--lg" href= "{% url 'profile-update' %}">Edit profile</a>
+               <a class="btn btn--sub btn--lg" href= "{% url 'profile-update' %}">Delete profile</a>
+               </div>
+
+            </div>
+
+            <div class="grid-item">
+                <h3> Something tab</h3>
+            </div>
+
+      </div>
+
 {% endif %}
 
 {% endblock  %}
