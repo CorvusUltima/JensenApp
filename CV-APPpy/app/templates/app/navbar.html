@@ -1,45 +1,44 @@
 
 
 {% load static %}
-<div class="navbar navbar-inverse navbar-fixed-top">
+<header class="header">
+
+    <div class="container container--narrow">
 
 
-    <a href="/" class="header__logo">
-        <img src="{%  static 'app/images/user-default.png'  %}"  width="30" 
-        height="25"  alt="DevSearch Logo" />
-    </a>
+        <a href="/" class="header__logo">
+            <img src="{%  static 'app/images/user-default.png'  %}"  width="30" 
+            height="25"  alt="DevSearch Logo" />
+        </a>
 
-    <nav class="header__nav">
-    
+        <nav class="header__nav">
 
 
-        <div >
-            <ul class="nav navbar-nav">
-                <li class="header__menuItem"><a href= "{% url 'home' %}">Home</a></li>
-                <li class="header__menuItem"><a href= "{% url 'about' %}">About</a></li>
-                <li class="header__menuItem"><a href= "{% url 'contact' %}">Contact</a></li>'
-                <li class="header__menuItem"><a href="{% url 'all-assignments' %}">Work with us </a></li>
-            </ul>
+            <input type="checkbox" id="responsive-menu" />
+            <label for="responsive-menu" class="toggle-menu">
+                <span>Menu</span>
+                <div class="toggle-menu__lines"></div>
+            </label>   
 
-           
-            <div>
+            
+                <ul class="header__menu">
+                    <li class="header__menuItem"><a href= "{% url 'home' %}">Home</a></li>
+                    <li class="header__menuItem"><a href= "{% url 'about' %}">About</a></li>
+                    <li class="header__menuItem"><a href= "{% url 'contact' %}">Contact</a></li>'
+                    <li class="header__menuItem"><a href="{% url 'all-assignments' %}">Work with us </a></li>
+                    {% if request.user.is_authenticated %}
+                    <li class="header__menuItem"><a href="{% url 'profile' %}">{{ user.username}} </a></li>
+                    <li class="btn btn--sub"><a href="{% url 'logout' %}">Logout </a></li>
 
-                <ul class="nav navbar-nav navbar-right">
-                  {% if request.user.is_authenticated %}
-                  <li class="header__menuItem"><a href="{% url 'profile' %}">{{ user.username}} </a></li>
-                  <li class="header__menuItem"><a href="{% url 'logout' %}">Logout </a></li>
-
-                  {% else %}
-                  <li><a href="{% url 'login' %}">Login </a></li>
-                  {% endif  %}
-                 
-                 </ul>
-            </div>
-             
-        </div>
-    </nav>
+                    {% else %}
+                    <li class="btn btn--sub"> <a href="{% url 'login' %}">Login </a></li>
+                    {% endif  %}
+                </ul>
+                
+        
+        </nav>
+        
     </div>
-</div>
 
-
+</header>
 
