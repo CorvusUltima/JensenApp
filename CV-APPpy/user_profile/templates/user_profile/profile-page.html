@@ -13,6 +13,7 @@
 
       <div class="grid-item">
         <h4>  Browse Applicants </h4>  
+      
       </div>
 
     <div class="grid-item">
@@ -21,7 +22,7 @@
         <br>
         <br>
         <h4>All Assignments</h4>
-  
+        <img width=200 height=150 src= "{{profile.profile_picture.url}}">
         <ul>
         {% for assignment in assignments %}
           <li>Name: <a href="{% url 'assignment-details' assignment.slug %}">{{assignment.title}}</a></li>  
@@ -40,31 +41,7 @@
 
 {% else %}
 
-      <div class="home-container">
-
-            <div class="grid-item">
-                <h3>  Browse tab</h3>
-            </div>
-        
-            <div class="grid-item">
-                <h2>  Profile page </h2>
-
-               <div>
-               <p>First name: {{profile.first_name}} </p>
-               <p>Last name: {{profile.last_name}} </p>
-               <p>About: {{profile.bio}} </p>
-
-               <a class="btn btn--sub btn--lg" href= "{% url 'profile-update' %}">Edit profile</a>
-               <a class="btn btn--sub btn--lg" href= "{% url 'profile-update' %}">Delete profile</a>
-               </div>
-
-            </div>
-
-            <div class="grid-item">
-                <h3> Something tab</h3>
-            </div>
-
-      </div>
+     
 
 {% endif %}
 

@@ -11,6 +11,7 @@ class Profile(models.Model):
      first_name=models.CharField(max_length=100)
      last_name=models.CharField(max_length=100)
      email=models.EmailField()
+     profile_picture=models.ImageField(null=True,blank= True,default="user-default.jpg")
      bio=models.CharField(max_length=100)
     
 

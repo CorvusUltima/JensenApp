@@ -10,6 +10,8 @@ from user_profile.models import Profile
 
 
 # Create your views here.
+def profiles(request):
+     return render(request,'user_profile/profiles.html')
 
 def profile_page(request):
     if request.user.is_authenticated:
