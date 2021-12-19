@@ -15,15 +15,32 @@
     <!-- Dev Search UI -->
     <link rel="stylesheet" href="{% static 'app/styles/app.css'  %}"  />
 
-    <style>
+    <!-- Use bacground-color on the contatiners to find the container
+    sizes and use "https://www.w3schools.com/cssref/sel_class.asp" for 
+    more documentation -->
+    <style> 
         .home-container{
             display: grid;
             grid-template-columns: 20% 60% 20%;   
-    }
-    .grid-item {
-       
-        justify-self: center;
-      }      
+        }
+        .grid-item {
+            justify-self: center;
+        }
+        .home-container-normal{
+            display: grid;
+            grid-template-columns: 20% 60% 20%;  
+            margin: 50px; 
+        }
+        .grid-item-normal {
+            justify-self: strech;
+            margin-right: 5px;
+            margin-left: 5px;
+        } 
+        .grid-item-single {
+            justify-self: strech;
+            margin-right: 50px;
+            margin-left: 50px; 
+        } 
     </style>
 
 
