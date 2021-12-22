@@ -13,10 +13,10 @@ from ProfilePages.models import Profile
 def profiles(request):
      return render(request,'ProfilePages/profiles.html')
 
-def profile_page(request):
+def profile_page(request,pk):
     if request.user.is_authenticated:
         assignments = []
-        profile = Profile.objects.get(user=request.user)
+        profile = Profile.objects.get(id=pk)
         for assignment in Assignment.objects.filter(host=request.user):
             assignments.append(assignment)
         context={'assignments':assignments,'profile':profile}

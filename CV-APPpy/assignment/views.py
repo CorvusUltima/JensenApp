@@ -46,8 +46,9 @@ def create_assignment(request):
            assignment.host=request.user
            assignment.slug=assignment.title.lower().replace(' ', '-')
            assignment.save()
-           
-        return redirect('profile')
+           id=request.user.profile.id
+
+        return redirect('profile',pk=id)
     context={'form':form}
     return render(request,'assignment/create-assignment.html',context)
 
