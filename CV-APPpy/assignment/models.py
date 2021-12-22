@@ -25,11 +25,11 @@ class Applicant(models.Model):
 
 class Assignment(models.Model):
     host = models.ForeignKey(User,on_delete=models.SET_NULL,blank=True, null=True)
-    tags = models.ManyToManyField(Tag,blank=True, null=True  )
+    tags = models.ManyToManyField(Tag,blank=True)
     title = models.CharField(max_length=200)
     description = models.TextField()
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
-    applicant = models.ManyToManyField(Applicant,blank=True, null=True)
+    applicant = models.ManyToManyField(Applicant,blank=True)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4,unique=True,primary_key=True,editable=False)
