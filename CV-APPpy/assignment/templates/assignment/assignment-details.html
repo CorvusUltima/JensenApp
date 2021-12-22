@@ -33,11 +33,8 @@
     </section>
   
     <section id="details">
-      <h3>What's This assignment About?</h3>
+      <h3>{{ assignment.title }}</h3>
       <p>{{ assignment.description }}</p>
-      <footer>
-        <p>Need more details? Please call 911 </p>
-      </footer>
     </section>
       {% if request.user.is_staff %}
       <button id="toggleBtn" onclick="toggle()">Show Applicants</button>
@@ -68,10 +65,9 @@
   </script>
       {% else %}
     <section id="registration">
-      <h2>Join Us</h2>
        <form action=" {% url 'assignment-details' assignment.slug %} " method="POST">
           <div class="assignment-actions">
-             <a href="{% url 'applicant-form' assignment.slug %}" class="btn">Applay</a>
+             <a href="{% url 'applicant-form' assignment.slug %}" class="btn">Apply now</a>
           </div>
        </form>
     </section>
@@ -81,7 +77,7 @@
   </article>
   
   {% else %}
-  <p>No assignment found for this slug, sorry!</p>
+  <p>No assignment was found for this slug, sorry!</p>
   {% endif %}
   
   {% endblock %}
