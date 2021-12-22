@@ -2,7 +2,6 @@
 
 {% load static %}
 
-
 {% block title %}
   {{ assignment.title }}
 {% endblock %}
@@ -20,28 +19,19 @@
 <div class="home-container">
 
 <div>
-
 </div>
-
- 
   <div class=>
   <article>
-  
+    <section id="details">
+      <h3>{{ assignment.title }}</h3>
+      <p>{{ assignment.description }}</p>
+    </section>
     <section id="location">
       <h3>Assignment Location</h3>
       <address>This assignment takes place in <span>{{ assignment.location.name }} </span>  {{ assignment.location.adress }}. </address>
     </section>
-  
-    <section id="details">
-      <h3>What's This assignment About?</h3>
-      <p>{{ assignment.description }}</p>
-      <footer>
-        <p>Need more details? Please call 911 </p>
-      </footer>
-    </section>
       {% if request.user.is_staff %}
       <button id="toggleBtn" onclick="toggle()">Show Applicants</button>
-  
   <div id="Applicants" style="display:none">
     <section >
       {% for applicant in assignment.applicant.all%}
@@ -71,7 +61,7 @@
       <h2>Join Us</h2>
        <form action=" {% url 'assignment-details' assignment.id %} " method="POST">
           <div class="assignment-actions">
-             <a href="{% url 'applicant-form' assignment.id %}" class="btn">Applay</a>
+             <a href="{% url 'applicant-form' assignment.id %}" class="btn">Apply now</a>
           </div>
        </form>
     </section>
