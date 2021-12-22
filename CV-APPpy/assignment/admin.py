@@ -5,9 +5,9 @@ from .models import Assignment,Location,Applicant,Tag
 
 
 class AssignmentAdmin(admin.ModelAdmin):
-	list_display = ('title' , 'slug')
+	list_display = ('title', )
 	list_filter =  ('location',)
-	prepopulated_fields = {'slug':('title',)}
+	
 
 admin.site.register(Assignment,AssignmentAdmin)
 admin.site.register(Location)
