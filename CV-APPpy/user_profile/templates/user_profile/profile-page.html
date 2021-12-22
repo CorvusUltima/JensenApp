@@ -22,9 +22,9 @@
         <br>
         <br>
         <h4>All Assignments</h4>
-        <img width=200 height=150 src= "{{profile.profile_picture.url}}">
         <ul>
         {% for assignment in assignments %}
+          <img width=200 height=150 src= "{{profile.profile_picture.url}}">
           <li>Name: <a href="{% url 'assignment-details' assignment.slug %}">{{assignment.title}}</a></li>  
           <li>Location: {{assignment.location}}  </li>
           <li> <a href="{% url 'assignment-details' assignment.slug %}"> Applicants: {{ assignment.applicant.count }} </a></li>

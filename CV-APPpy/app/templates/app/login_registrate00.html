@@ -24,8 +24,8 @@
 
         </form>
 
-        <p> Havent sign up yet ?  </p>
-        <a href="{% url 'register' %}">Sign up !</a>
+        <p> Haven't registered yet?  </p>
+        <a href="{% url 'register' %}">Register</a>
 
         {% else %}
         <div>
@@ -36,8 +36,8 @@
                 {{form.as_p}}
                
                 <input class="btn btn--sub btn--lg" type="submit" value="Register"/>
-                <p> You are signd up? log in   </p>
-                <a href="{% url 'login' %}">Log in  !</a>
+                <p> Already registered?</p>
+                <a href="{% url 'login' %}">Login</a>
             </form>
 
             {% if messages %}

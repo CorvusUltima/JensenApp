@@ -5,9 +5,9 @@ from .forms import RegistrationForm ,AssignmentForm
 # Create your views here.
 
 
-def apply(request, assignment_slug):
+def apply(request, pk):
 
-    assignment=Assignment.objects.get(slug=assignment_slug)
+    assignment=Assignment.objects.get(id=pk)
     form = RegistrationForm(request.POST)
 
     if form.is_valid():
@@ -55,11 +55,11 @@ def create_assignment(request):
 
 
 
-def assignment_details(request, assignment_slug):
+def assignment_details(request, pk):
     view_all_applicants=True
     context= {'view_applicants':view_all_applicants}
     try: 
-          assignment= Assignment.objects.get(slug=assignment_slug)
+          assignment= Assignment.objects.get(id=pk)
           return render(request, 'assignment/assignment-details.html',
                          {    'assignment_found': True,
                               'assignment': assignment ,
