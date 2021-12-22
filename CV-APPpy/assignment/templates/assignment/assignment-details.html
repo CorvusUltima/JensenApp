@@ -33,11 +33,8 @@
     </section>
   
     <section id="details">
-      <h3>What's This assignment About?</h3>
+      <h3>{{ assignment.title }}</h3>
       <p>{{ assignment.description }}</p>
-      <footer>
-        <p>Need more details? Please call 911 </p>
-      </footer>
     </section>
       {% if request.user.is_staff %}
       <button id="toggleBtn" onclick="toggle()">Show Applicants</button>

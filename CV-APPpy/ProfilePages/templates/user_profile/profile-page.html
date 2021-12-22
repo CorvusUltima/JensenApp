@@ -1,0 +1,80 @@
+{% extends "app/layout.html" %}
+
+
+
+{% block content %}
+
+
+<br>
+<br>
+{% if request.user.is_staff %}
+
+<div class="home-container" >
+
+      <div class="grid-item">
+        <h4>  Browse Applicants </h4>  
+      
+      </div>
+
+    <div class="grid-item">
+
+        <a href="{% url 'create-assignment' %}">Create new assignment</a>
+        <br>
+        <br>
+        <h4>All Assignments</h4>
+        <ul>
+        {% for assignment in assignments %}
+          <img width=200 height=150 src= "{{profile.profile_picture.url}}">
+          <li>Name: <a href="{% url 'assignment-details' assignment.slug %}">{{assignment.title}}</a></li>  
+          <li>Location: {{assignment.location}}  </li>
+          <li> <a href="{% url 'assignment-details' assignment.slug %}"> Applicants: {{ assignment.applicant.count }} </a></li>
+          <br>
+        {% endfor %}
+      </ul>
+
+    </div>
+
+    <div>
+
+
+    </div>
+
+{% else %}
+
+  <div class="home-container" >
+
+    <div class="grid-item">
+      <h4>  Browse Applicants </h4>  
+    
+    </div>
+
+  <div class="grid-item">
+
+      <a href="{% url 'profile-update' %}">Update prfile</a>
+      <br>
+      <br>
+      <img width=200 height=150 src= "{{profile.profile_picture.url}}">
+      <p>name : {{profile.first_name}}</p>
+      <p>bio : {{profile.bio}}</p>
+
+
+  </div>
+
+  <div>
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+{% endif %}
+
+{% endblock  %}

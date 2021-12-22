@@ -1,0 +1,73 @@
+{% extends "app/layout.html" %}
+
+
+
+
+
+{% block content %}
+
+<br>
+
+<div>  
+    {% if page == 'login' %}
+    <div>
+        <form METHOD="POST" action="">
+            {% csrf_token %}
+
+            <label>Username :</label>
+            <input class="btn btn--sub btn--lg" type="text" name="username" placeholder="Enter Username"/>
+
+            <label>Password :</label>
+            <input  class="btn btn--sub btn--lg" type="password" name="password" placeholder="Enter Password"/>
+
+            <input class="btn btn--sub btn--lg"  type="submit" value="Login"/>
+
+        </form>
+
+        <p> Haven't registered yet?  </p>
+        <a href="{% url 'register' %}">Register</a>
+
+        {% else %}
+        <div>
+
+            <form METHOD="POST" action="">
+                {% csrf_token %}
+                
+                {{form.as_p}}
+               
+                <input class="btn btn--sub btn--lg" type="submit" value="Register"/>
+                <p> Already registered?</p>
+                <a href="{% url 'login' %}">Login</a>
+            </form>
+
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+
+        </div>
+        
+
+    </div>
+    
+       
+
+    {% endif %}
+    
+
+            
+
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+
+
+
+{% endblock %}
