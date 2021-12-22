@@ -29,7 +29,7 @@ def profile_page(request):
 
 def profile_update(request):
 
-    
+
     profile=Profile.objects.get(user=request.user)
     form=CreateProfileForm(instance=profile)
     if request.method=='POST':
@@ -41,5 +41,9 @@ def profile_update(request):
     context={'form': form}
     return render(request,'user_profile/profile-update.html',context)
 
+def test(request):
+    ob=353
+    context={'ob':ob}
 
+    return render(request,'user_profile/test.html',context)
 
