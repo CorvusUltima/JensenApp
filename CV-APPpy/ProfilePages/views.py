@@ -15,7 +15,6 @@ def profiles(request):
 
 def profile_page(request,pk):
     if request.user.is_authenticated:
-        assignments = []
         profile = Profile.objects.get(id=pk)
         assignments = [_ for _ in Assignment.objects.filter(host=request.user)]
         assignments_applied = profile.assignments.all()
