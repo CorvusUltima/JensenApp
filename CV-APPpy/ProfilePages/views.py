@@ -14,7 +14,7 @@ def profiles(request):
      return render(request,'ProfilePages/profiles.html')
 
 def profile_page(request, pk):
-    if((str(request.user.profile.id) == pk) | request.user.is_superuser):
+    if(request.user.is_authenticated | request.user.is_superuser):
         assignments = []
         profile = Profile.objects.get(id=pk)
         for assignment in Assignment.objects.filter(host=request.user):
@@ -25,14 +25,14 @@ def profile_page(request, pk):
 
 
 def profile_update(request, pk):
-    if((str(request.user.profile.id) == pk) | request.user.is_superuser):
+    if(request.user.is_authenticated | request.user.is_superuser):
         profile = Profile.objects.get(id=pk)
         form = CreateProfileForm(instance=profile)
         if request.method=='POST':
             form=CreateProfileForm(request.POST,instance=profile)
             if form.is_valid():
                 form.save()
-                return redirect('profile')
+                return redirect('home')
         context={'form': form}
         return render(request,'ProfilePages/profile-update.html',context)
     else:
