@@ -6,7 +6,7 @@ urlpatterns = [
    
     path('profile/<str:pk>',views.profile_page, name='profile'),
     path('profiles',views.profiles, name='profiles'),
-    path('profile/update/',views.profile_update, name='profile-update'),
+    path('profile/update/<str:pk>',views.profile_update, name='profile-update'),
     path('profile/test/',views.test, name='test')
 ]
 
