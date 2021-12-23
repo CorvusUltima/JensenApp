@@ -34,20 +34,14 @@ def login_page(request):
 
         try:
             user = User.objects.get(username=username)
+            userAccount = authenticate(request,username=username,password=pasword)
+            if userAccount is not None:
+                login(request,userAccount)
+                return redirect('home')
+            else:
+                messages.info(request,'Incorrect password entered. Please try again.')
         except:
-            messages.info(request, 'Your username or password was incorrect')
-            #messages.error(request,'user does not exists ')
-        
-        user= authenticate(request,username=username,password=pasword)
-       
-
-        if user is not None:
-            login(request,user)
-            return redirect('home')
-        else :
-             messages.error(request,'username or password does not exist ')
-
-
+            messages.info(request, 'Incorrect username or password entered. Please try again.')
     context={'page' : page}
     return render(request,'MainPages/login_registrate00.html',context)
 
@@ -68,7 +62,6 @@ def register_page(request):
             redirect('home')
         else :
             messages.error(request,'message')
-
     return render (request,'MainPages/login_registrate00.html',{'form':form})
     
     
