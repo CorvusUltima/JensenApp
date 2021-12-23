@@ -13,7 +13,7 @@
     <!-- Mumble UI -->
     <link rel="stylesheet" href="{% static 'uikit/styles/uikit.css' %}" />
     <!-- Dev Search UI -->
-    <link rel="stylesheet" href="{% static 'app/styles/app.css'  %}"  />
+    <link rel="stylesheet" href="{% static 'MainPages/styles/MainPages.css'  %}"  />
 
     <style>
     .home-container{
@@ -47,12 +47,12 @@
 
     <title>{{ title }}</title>
    
-    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'MainPages/content/bootstrap.min.css' %}" />
    
     {% block static %}
     {% endblock %}
 
-    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+    <script src="{% static 'MainPages/scripts/modernizr-2.6.2.js' %}"></script>
 </head>
 
 <body>
@@ -76,9 +76,9 @@
     
  </div>
 
-        <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
-        <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
-        <script src="{% static 'app/scripts/respond.js' %}"></script>
+        <script src="{% static 'MainPages/scripts/jquery-1.10.2.js' %}"></script>
+        <script src="{% static 'MainPages/scripts/bootstrap.js' %}"></script>
+        <script src="{% static 'MainPages/scripts/respond.js' %}"></script>
 
  
     {% block scripts %}{% endblock %}
