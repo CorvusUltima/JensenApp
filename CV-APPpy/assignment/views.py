@@ -16,7 +16,6 @@ def apply(request, pk):
         applicant,_ = Applicant.objects.get_or_create(**form.cleaned_data)
         assignment.applicant.add(applicant)
         profile=Profile.objects.get(id=request.user.profile.id)
-        print(str(profile))
         profile.assignments.add(assignment)
         return redirect('confirm-registration')
      

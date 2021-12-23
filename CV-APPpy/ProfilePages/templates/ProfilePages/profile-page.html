@@ -72,7 +72,7 @@
             <a title="Personal Website" href="#" target="_blank"><i class="im im-globe"></i></a>
           </li>
         </ul>
-        <a href="{% url 'profile-update' %}"class="btn btn--sub btn--lg">Update</a>
+        <a href="{% url 'profile-update' request.user.profile.id %}"class="btn btn--sub btn--lg">Update</a>
       </div>
     </div>
   </div>
