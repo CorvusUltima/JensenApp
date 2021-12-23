@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+
+from ProfilePages.models import Profile
 from .models import Assignment, Applicant, Location
 from .forms import RegistrationForm ,AssignmentForm
 
@@ -13,6 +15,9 @@ def apply(request, pk):
     if form.is_valid():
         applicant,_ = Applicant.objects.get_or_create(**form.cleaned_data)
         assignment.applicant.add(applicant)
+        profile=Profile.objects.get(id=request.user.profile.id)
+        print(str(profile))
+        profile.assignments.add(assignment)
         return redirect('confirm-registration')
      
        

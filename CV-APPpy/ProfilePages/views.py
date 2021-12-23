@@ -17,9 +17,10 @@ def profile_page(request,pk):
     if request.user.is_authenticated:
         assignments = []
         profile = Profile.objects.get(id=pk)
-        for assignment in Assignment.objects.filter(host=request.user):
-            assignments.append(assignment)
-        context={'assignments':assignments,'profile':profile}
+        assignments = [_ for _ in Assignment.objects.filter(host=request.user)]
+        assignments_applied = profile.assignments.all()
+        
+        context={'assignments':assignments,'profile':profile ,'assignments_applied':assignments_applied}
     
         return render(request,'ProfilePages/profile-page.html',context)
     
