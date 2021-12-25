@@ -30,7 +30,7 @@ def profile_update(request, pk):
         profile = Profile.objects.get(id=pk)
         form = CreateProfileForm(instance=profile)
         if request.method=='POST':
-            form=CreateProfileForm(request.POST,instance=profile)
+            form=CreateProfileForm(request.POST,request.FILES,instance=profile)
             if form.is_valid():
                 form.save()
                 return redirect('home')
