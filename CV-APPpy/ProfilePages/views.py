@@ -18,8 +18,11 @@ def profile_page(request,pk):
         profile = Profile.objects.get(id=pk)
         assignments = [_ for _ in Assignment.objects.filter(host=request.user)]
         assignments_applied = profile.assignments.all()
-        
-        context={'assignments':assignments,'profile':profile ,'assignments_applied':assignments_applied}
+        profile_picture=profile.profile_picture.url
+        print(" iznad sam ovdeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+        print(profile_picture)
+        print("ovdeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+        context={'assignments':assignments,'profile':profile ,'assignments_applied':assignments_applied,"picture":profile_picture}
     
         return render(request,'ProfilePages/profile-page.html',context)
     return redirect('login')

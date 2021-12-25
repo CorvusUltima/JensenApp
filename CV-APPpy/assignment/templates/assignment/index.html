@@ -40,7 +40,7 @@
           <div class="column">
             <div class="card project">
               <a href="{% url 'assignment-details' assignment_item.id %}" class="project">
-                <img class="project__thumbnail" src="images/project-a.png" alt="project thumbnail" />
+                <img class="project__thumbnail" src="{{assignment_item.featured_picture.url}}" alt="project.jpg" />
                 <div class="card__body">
                   <h3 class="project__title">{{ assignment_item.title}}</h3>
                   <p><a class="project__author" href="profile.html">{{assignment_item.host}}</a></p>

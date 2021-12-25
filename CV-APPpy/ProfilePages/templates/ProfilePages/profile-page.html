@@ -24,7 +24,7 @@
         <h4>All Assignments</h4>
         <ul>
         {% for assignment in assignments %}
-          <img width=200 height=150 src= "{{profile.profile_picture.url}}">
+          <img width=200  height=150 class="project__thumbnail" src="{{assignment.featured_picture.url}}" alt="project.jpg" />
           <li>Name: <a href="{% url 'assignment-details' assignment.id %}">{{assignment.title}}</a></li>  
           <li>Location: {{assignment.location}}  </li>
           <li> <a href="{% url 'assignment-details' assignment.id %}"> Applicants: {{ assignment.applicant.count }} </a></li>
@@ -52,7 +52,7 @@
      
     <div class="card text-center">
       <div class="card__body dev">
-        <img class="avatar avatar--xl" src={{profile.profile_picture.url}}/>
+        <img class="avatar avatar--xl" src="{{ picture }}" alt="user-default"/>
         <h2 class="dev__name">{{profile.fullname}}</h2>
         <p class="dev__title">Expirance FullStack Developer</p>
         <p class="dev__location">Based in Florida, USA</p>
@@ -131,7 +131,7 @@
       <div class="column">
         <div class="card project">
           <a href="single-project.html" class="project">
-            <img class="project__thumbnail" src="images/project-b.png" alt="project thumbnail" />
+            <img width=75  height=35 class="project__thumbnail" src="{{assignment.featured_picture.url}}" alt="project.jpg" />
             <div class="card__body">
               <h3 class="project__title">{{assignment.title}}</h3>
               <p><a class="project__author" href="profile.html">By {{assignment.host}}</a></p>

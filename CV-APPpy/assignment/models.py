@@ -27,6 +27,7 @@ class Assignment(models.Model):
     host = models.ForeignKey(User,on_delete=models.SET_NULL,blank=True, null=True)
     tags = models.ManyToManyField(Tag,blank=True)
     title = models.CharField(max_length=200)
+    featured_picture = models.ImageField(null=True,blank=True , default = "project.jpg")
     description = models.TextField()
     location = models.ForeignKey(Location, on_delete=models.CASCADE)
     applicant = models.ManyToManyField(Applicant,blank=True)

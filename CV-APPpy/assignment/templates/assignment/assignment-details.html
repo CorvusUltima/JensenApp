@@ -29,6 +29,7 @@
     <section id="location">
       <h3>Assignment Location</h3>
       <address>This assignment takes place in <span>{{ assignment.location.name }} </span>  {{ assignment.location.adress }}. </address>
+     
     </section>
       {% if request.user.is_staff %}
       <button id="toggleBtn" onclick="toggle()">Show Applicants</button>

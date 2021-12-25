@@ -14,7 +14,7 @@ class Profile(models.Model):
      first_name = models.CharField(max_length=100)
      last_name = models.CharField(max_length=100)
      email = models.EmailField()
-     profile_picture= models.ImageField(null=True,blank= True,default="user-default.jpg")
+     profile_picture= models.ImageField(null=True,blank= True,default="user-default.png")
      bio = models.TextField(max_length=1000,blank=True)
      created = models.DateTimeField(auto_now_add=True,blank=True,null=True)
      id = models.UUIDField(default=uuid.uuid4,unique=True,primary_key=True,editable=False)
