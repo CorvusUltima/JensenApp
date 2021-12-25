@@ -57,6 +57,22 @@ def create_assignment(request):
     return render(request,'assignment/create-assignment.html',context)
 
 
+def update_assignment(request,pk):
+    
+    assignment =Assignment.objects.get(id=pk)
+    form = AssignmentForm(instance= assignment)
+    if request.method=='POST':
+        form=AssignmentForm(request.POST,request.FILES,instance=assignment)
+        if form.is_valid():
+           assignment=form.save(commit= False)
+           assignment.host=request.user
+           assignment.save()
+           id=request.user.profile.id
+
+        return redirect('profile',pk=id)
+    context={'form':form}
+    return render(request,'assignment/update-assignment.html',context)
+
 
 
 

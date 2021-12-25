@@ -6,7 +6,9 @@ urlpatterns = [
    
     path('assignment/', views.index, name='all-assignments'),
     path('assignment/success',views.registration_confirmation, name ='confirm-registration'),
+
     path('assignment/create-assignment',views.create_assignment, name='create-assignment'),
+    path('assignment/update-assignment/<str:pk>',views.update_assignment, name='update-assignment'),
 
     path('assignment/<str:pk>', views.assignment_details, name='assignment-details'),
 
