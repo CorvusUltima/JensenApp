@@ -4,7 +4,7 @@
 {% block content %}
 <h1> Update Assignment</h1>
 <div>
-<form method="POST" action="">
+<form method="POST" action="" enctype="multipart/form-data">
    {% csrf_token %}
    {{ form.as_ul }}
    <input class="btn btn--sub btn--lg" type="submit" value ="Submit"/>

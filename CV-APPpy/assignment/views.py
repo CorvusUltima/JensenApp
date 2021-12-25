@@ -44,7 +44,7 @@ def get_all_user_assignments(request):
 def create_assignment(request):
     form = AssignmentForm()
     if request.method=='POST':
-        form=AssignmentForm(request.POST)
+        form=AssignmentForm(request.POST,request.FILES )
         if form.is_valid():
            assignment=form.save(commit= False)
            assignment.host=request.user

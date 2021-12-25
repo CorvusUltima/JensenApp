@@ -24,12 +24,14 @@
         <h4>All Assignments</h4>
         <ul>
         {% for assignment in assignments %}
+        <br>
+          <a href="{% url 'assignment-details' assignment.id %}">View</a> &nbsp  &nbsp<a href="{% url 'update-assignment' assignment.id %}">Update</a>
           <img width=200  height=150 class="project__thumbnail" src="{{assignment.featured_picture.url}}" alt="project.jpg" />
           <li>Name: <a href="{% url 'assignment-details' assignment.id %}">{{assignment.title}}</a></li>  
           <li>Location: {{assignment.location}}  </li>
           <li> <a href="{% url 'assignment-details' assignment.id %}"> Applicants: {{ assignment.applicant.count }} </a></li>
-          <a href="{% url 'assignment-details' assignment.id %}">View</a> &nbsp  &nbsp<a href="{% url 'update-assignment' assignment.id %}">Update</a>
           <br>
+         
         {% endfor %}
       </ul>
 
