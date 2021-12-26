@@ -32,7 +32,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'MainPages',
     'assignment',
-    'ProfilePages',
+#    'ProfilePages',
+    'ProfilePages.apps.UserProfileConfig',
     # Add your apps here to enable them
     'django.contrib.admin',
     'django.contrib.auth',
