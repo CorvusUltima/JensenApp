@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login ,logout
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpRequest
+from django.urls import reverse
 
 def home(request):
     """Renders the home page."""
@@ -59,7 +60,8 @@ def register_page(request):
             user.username=user.username.lower()
             user.save()
             login(request,user)
-            redirect('home')
+            named_redirect = reverse('profile', args=[str(request.user.profile.id)])
+            return redirect(named_redirect)
         else :
             messages.error(request,'message')
     return render (request,'MainPages/login_registrate00.html',{'form':form})

@@ -1,5 +1,5 @@
 from django.db.models.signals import post_save ,post_delete
-from django.contrib.auth.models import  User
+from django.contrib.auth.models import User
 from ProfilePages.models import Profile
 
 def create_profile(sender, instance,created,**kwargs):
@@ -16,7 +16,6 @@ def create_profile(sender, instance,created,**kwargs):
             print(profile.user)
             print(profile.first_name)
             profile.save()
-            
 
 
 def delete_profile(sender,instance,**kwargs):
