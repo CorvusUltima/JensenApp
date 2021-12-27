@@ -1,5 +1,3 @@
-from django import forms
-from django.http import request
 from django.shortcuts import render , redirect
 from django.contrib.auth.decorators import login_required
 
@@ -17,10 +15,9 @@ def profile_page(request,pk):
     if request.user.is_authenticated:
         profile = Profile.objects.get(id=pk)
         assignments = [_ for _ in Assignment.objects.filter(host=request.user)]
-        assignments_applied = profile.assignments.all()
-        profile_picture=profile.profile_picture.url
         
-        context={'assignments':assignments,'profile':profile ,'assignments_applied':assignments_applied,"picture":profile_picture}
+        
+        context={'assignments':assignments,'profile':profile}
     
         return render(request,'ProfilePages/profile-page.html',context)
     return redirect('login')
@@ -35,13 +32,15 @@ def profile_update(request, pk):
             if form.is_valid():
                 form.save()
                 return redirect('home')
-        context={'form': form}
+        context = {'form': form}
         return render(request,'ProfilePages/profile-update.html',context)
     else:
         return redirect('home')
 
-def test(request):
-    ob=353
-    context={'ob':ob}
-    return render(request,'ProfilePages/test.html',context)
 
+def account(request):
+    id = request.user.profile.id
+    profile = Profile.objects.get(id = id)
+    assignments = [_ for _ in Assignment.objects.filter(host=request.user)]
+    context = {'assignments':assignments, 'profile' : profile}
+    return render(request,'ProfilePages/account.html',context)

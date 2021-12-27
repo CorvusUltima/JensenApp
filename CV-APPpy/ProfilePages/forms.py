@@ -1,4 +1,3 @@
-from typing import Tuple
 from django.forms import ModelForm
 from .models import Profile
 
