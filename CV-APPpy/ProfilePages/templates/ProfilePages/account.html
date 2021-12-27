@@ -51,7 +51,7 @@
           <div class="card text-center">
             <div class="card__body dev">
               <a class="tag tag--pill tag--main settings__btn" href="{% url 'profile-update' request.user.profile.id %}"><i class="im im-edit"></i> Edit</a>
-              <img class="avatar avatar--xl dev__avatar"  src="{{ profile.profile_picture.url }}" alt="user-default" />
+              <a href="{% url 'profile' profile.id %}" ><img class="avatar avatar--xl dev__avatar" src="{{ profile.profile_picture.url }}" alt="user-default" /></a>
               
               <h2 class="dev__name"  >{{profile.fullname}}  </h2>
              
