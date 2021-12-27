@@ -29,7 +29,9 @@ class Profile(models.Model):
 
      @property
      def fullname(self):
-        return f"{self.first_name} {self.last_name}"
+        if all([self.first_name, self.last_name]):
+           return f"{self.first_name} {self.last_name}"
+        return "missing name data"
    
      def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.email}"
