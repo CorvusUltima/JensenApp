@@ -1,0 +1,145 @@
+
+{% extends "MainPages/layout.html" %}
+
+{% block content %}
+  <!-- Main Section -->
+
+  {% if request.user.is_superuser%}
+
+  <div class="home-container" >
+
+    <div class="grid-item">
+      <h4>  Browse Applicants </h4>  
+    
+    </div>
+
+  <div class="grid-item">
+
+      <a href="{% url 'create-assignment' %}">Create new assignment</a>
+      <br>
+      <br>
+      <h4>All Assignments</h4>
+      <ul>
+      {% for assignment in assignments %}
+      <br>
+        <a href="{% url 'assignment-details' assignment.id %}">View</a> &nbsp  &nbsp<a href="{% url 'update-assignment' assignment.id %}">Update</a>
+        <img width=200  height=150 class="project__thumbnail" src="{{assignment.featured_picture.url}}" alt="project.jpg" />
+        <li>Name: <a href="{% url 'assignment-details' assignment.id %}">{{assignment.title}}</a></li>  
+        <li>Location: {{assignment.location}}  </li>
+        <li> <a href="{% url 'assignment-details' assignment.id %}"> Applicants: {{ assignment.applicant.count }} </a></li>
+        <br>
+       
+      {% endfor %}
+    </ul>
+
+  </div>
+
+  <div>
+
+
+  </div>
+  {% else %}
+  <main class="settingsPage profile my-md">
+    <div class="container">
+      <div class="layout">
+        <div class="column column--1of3">
+          <div class="card text-center">
+            <div class="card__body dev">
+              <a class="tag tag--pill tag--main settings__btn" href="#"><i class="im im-edit"></i> Edit</a>
+              <img class="avatar avatar--xl dev__avatar"  src="{{ profile.profile_picture.url }}" alt="user-default" />
+              <h2 class="dev__name">{{profile.fullname}}</h2>
+              <p class="dev__title">Expirance FullStack Developer, Youtuber and Instructor</p>
+              <p class="dev__location">Based in Florida, USA</p>
+              <ul class="dev__social">
+                <li>
+                  <a title="Github" href="#" target="_blank"><i class="im im-github"></i></a>
+                </li>
+                <li>
+                  <a title="Stackoverflow" href="#" target="_blank"><i class="im im-stackoverflow"></i></a>
+                </li>
+                <li>
+                  <a title="Twitter" href="#" target="_blank"><i class="im im-twitter"></i></a>
+                </li>
+                <li>
+                  <a title="LinkedIn" href="#" target="_blank"><i class="im im-linkedin"></i></a>
+                </li>
+                <li>
+                  <a title="Personal Website" href="#" target="_blank"><i class="im im-globe"></i></a>
+                </li>
+              </ul>
+              <a href="#" class="btn btn--sub btn--lg">Send Message </a>
+            </div>
+          </div>
+        </div>
+        <div class="column column--2of3">
+          <div class="devInfo">
+            <h3 class="devInfo__title">About Me</h3>
+            <p class="devInfo__about">
+                {{profile.bio}}
+            </p>
+          </div>
+          <div class="settings">
+            <h3 class="settings__title">Skills</h3>
+            <a class="tag tag--pill tag--sub settings__btn tag--lg" href="#"><i class="im im-plus"></i> Add Skill</a>
+          </div>
+
+          <table class="settings__table">
+            <tr>
+              <td class="settings__tableInfo">
+                <h4>JavaScript</h4>
+                <p>
+                  Consectetur adipisicing elit. Natus nam dolore aut sed vitae eos architecto unde tempore
+                  exercitationem fugiat?...
+                </p>
+              </td>
+              <td class="settings__tableActions">
+                <a class="tag tag--pill tag--main settings__btn" href="#"><i class="im im-edit"></i> Edit</a>
+                <a class="tag tag--pill tag--main settings__btn" href="#"><i class="im im-x-mark-circle-o"></i>
+                  Delete</a>
+              </td>
+            </tr>
+          </table>
+
+             {% endif %}
+
+
+
+
+
+          {% if 0 %}
+          <div class="settings">Assignments</h3>
+            <a class="tag tag--pill tag--sub settings__btn tag--lg" href="#"><i class="im im-plus"></i> Add Project</a>
+          </div>
+
+          {% for assignment in assignments %}
+          <table class="settings__table">
+            <tr>
+              <td class="settings__thumbnail">
+                <a href="{% url 'assignment-details' assignment.id %}">
+                    <img class="project__thumbnail" src="{{assignment.featured_picture.url}}" alt="project.jpg" />
+              </td>
+              <td class="settings__tableInfo">
+                <li>Name: <a href="{% url 'assignment-details' assignment.id %}">{{assignment.title}}</a></li> 
+                <li>Location: {{assignment.location}}  </li>
+                <p>
+                  Do we need this field (DESCRIPTION PLACEHOLDER)
+                </p>
+              </td>
+             
+              <td class="settings__tableActions">
+                <a class="tag tag--pill tag--main settings__btn" href="#"><i class="im im-edit"></i> Edit</a>
+                <a class="tag tag--pill tag--main settings__btn" href="#"><i class="im im-x-mark-circle-o"></i>
+                  Delete</a>
+              </td>
+            </tr>
+          </table>
+          {% endfor %}
+
+          {% endif %}
+
+
+        </div>
+      </div>
+    </div>
+  </main>
+  {% endblock %}
