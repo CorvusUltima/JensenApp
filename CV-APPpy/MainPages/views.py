@@ -3,6 +3,7 @@ Definition of views.
 """
 
 from datetime import datetime
+from typing import ContextManager
 from django.shortcuts import render , redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -10,6 +11,7 @@ from django.contrib.auth import authenticate, login ,logout
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpRequest
 from django.urls import reverse
+from MainPages.forms import RegistrationForm
 
 def home(request):
     """Renders the home page."""
@@ -48,24 +50,29 @@ def login_page(request):
 def logout_page(request):
     logout(request)
     return redirect('home')
-
+    
 def register_page(request):
-    form= UserCreationForm()
-
     if request.method=='POST':
-        form =  UserCreationForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
-            user=form.save(commit=False)
-            user.username=user.username.lower()
+            form.save()
+            user = form.save(commit=False)
+            user.username = user.username.lower()
             user.save()
+            # Alternatively
+            # user = form.cleaned_data.get('username')
+            # user = user.lower()
+            # raw_password = form.cleaned_data.get('password')
+            # authenticate(username=user, password=raw_password)
             login(request,user)
-           
             return redirect('profile-update' ,request.user.profile.id)
         else :
             messages.error(request,'message')
-    return render (request,'MainPages/login_registrate00.html',{'form':form})
-    
-    
+    else:
+        form = UserCreationForm()
+    return render (request,'MainPages/login_registrate00.html',{'registration_form':form})
+
+
 def contact(request):
     """Renders the contact page."""
     assert isinstance(request, HttpRequest)
