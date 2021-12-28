@@ -76,14 +76,14 @@ def update_assignment(request,pk):
 
 def assignment_details(request, pk):
     view_all_applicants=True
-    context= {'view_applicants':view_all_applicants}
     try: 
           assignment= Assignment.objects.get(id=pk)
           return render(request, 'assignment/assignment-details.html',
-                         {    'assignment_found': True,
-                              'assignment': assignment ,
-                          'view_applicants':view_all_applicants}
-                          )
+                         {
+                        'assignment_found': True,
+                        'assignment': assignment ,
+                        'view_applicants':view_all_applicants}
+                        )
                                        
     except Exception as exc:
          print(exc)
