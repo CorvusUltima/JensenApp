@@ -3,6 +3,7 @@ Definition of views.
 """
 
 from datetime import datetime
+from typing import ContextManager
 from django.shortcuts import render , redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -10,6 +11,7 @@ from django.contrib.auth import authenticate, login ,logout
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpRequest
 from django.urls import reverse
+from MainPages.forms import RegistrationForm
 
 def home(request):
     """Renders the home page."""
@@ -50,20 +52,26 @@ def logout_page(request):
     return redirect('home')
 
 def register_page(request):
-    form= UserCreationForm()
-
+    form = UserCreationForm(request.POST)
     if request.method=='POST':
-        form =  UserCreationForm(request.POST)
+        #form = RegistrationForm(request.POST)
         if form.is_valid():
-            user=form.save(commit=False)
-            user.username=user.username.lower()
-            user.save()
+            form.save()
+            user = form.cleaned_data.get('username')
+            user = user.lower()
+            raw_password = form.cleaned_data.get('password1')
+            account = authenticate(username=user, password=raw_password)
             login(request,user)
+            #user=form.save(commit=False)
+            #user.username=user.username.lower()
+            #user.save()
+            #login(request,user)
            
             return redirect('profile-update' ,request.user.profile.id)
-        else :
-            messages.error(request,'message')
-    return render (request,'MainPages/login_registrate00.html',{'form':form})
+        #else :
+            #messages.error(request,'message')
+            # Do nothing, if the form has errors it will automatically have errors displayed   
+    return render (request,'MainPages/login_registrate00.html',{'registration_form':form})
     
     
 def contact(request):
