@@ -128,9 +128,10 @@
                 </p>
               </td>
              
+              
+
               <td class="settings__tableActions">
-                <a class="tag tag--pill tag--main settings__btn" href="#"><i class="im im-x-mark-circle-o"></i>
-                  Delete</a>
+                <a class="tag tag--pill tag--main settings__btn"   href="{% url 'cancel-assignment' assignment.id %}">Cancel</a></li>             
               </td>
             </tr>
           </table>
@@ -141,4 +142,14 @@
       </div>
     </div>
   </main>
+
+  <script>
+    function remove_task(id, profile) {
+      alert()
+      profile.call(id)
+     
+    }
+    </script>
   {% endblock %}
+
+  
