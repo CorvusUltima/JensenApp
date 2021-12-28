@@ -45,3 +45,15 @@ def account(request):
     assignments = [_ for _ in Assignment.objects.filter(host=request.user)]
     context = {'assignments':assignments, 'profile' : profile}
     return render(request,'ProfilePages/account.html',context)
+
+def cancel_assignment(request,pk):
+
+    assignment = request.user.profile.assignments.get(id=pk)
+    if assignment is not None:
+        request.user.profile.assignments.remove(assignment)
+       
+      
+    return redirect('account')
+
+
+    
