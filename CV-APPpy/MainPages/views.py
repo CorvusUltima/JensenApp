@@ -31,11 +31,10 @@ def login_page(request):
         return redirect('home')
     if request.method=='POST':   
         username=request.POST.get('username')
-        pasword=request.POST.get('password')
+        password=request.POST.get('password')
 
         try:
-            user = User.objects.get(username=username)
-            userAccount = authenticate(request,username=username,password=pasword)
+            userAccount = authenticate(request,username=username,password=password)
             if userAccount is not None:
                 login(request,userAccount)
                 return redirect('home')
@@ -60,8 +59,8 @@ def register_page(request):
             user.username=user.username.lower()
             user.save()
             login(request,user)
-            named_redirect = reverse('profile', args=[str(request.user.profile.id)])
-            return redirect(named_redirect)
+           
+            return redirect('profile-update' ,request.user.profile.id)
         else :
             messages.error(request,'message')
     return render (request,'MainPages/login_registrate00.html',{'form':form})

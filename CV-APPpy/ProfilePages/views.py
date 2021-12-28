@@ -21,21 +21,22 @@ def profile_page(request,pk):
 
     return render(request,'ProfilePages/profile-page.html',context)
 
-    
+
 
 @login_required(login_url = 'login')
 def profile_update(request, pk):
-    if(request.user.is_authenticated | request.user.is_superuser):
+   
         profile = Profile.objects.get(id=pk)
         form = CreateProfileForm(instance=profile)
         if request.method=='POST':
             form=CreateProfileForm(request.POST,request.FILES,instance=profile)
             if form.is_valid():
-                form.save()
+                profile=form.save(commit= False)
+                profile.save()
                 return redirect('account')
         context = {'form': form}
         return render(request,'ProfilePages/profile-update.html',context)
-    return redirect('home')
+    
 
 @login_required(login_url = 'login')
 def account(request):
