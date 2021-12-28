@@ -91,41 +91,6 @@
 
   </div>
 
-<div class="grid-item-normal">
-
-  <div class="devInfo">
-    <h3 class="devInfo__title">Assignments</h3>
-
-              {% for  assignment in profile.assignments.all %}
-    <div class="grid grid--two">
-
-      <div class="column">
-        <div class="card project">
-          <a href="single-project.html" class="project">
-            <img width=75  height=35 class="project__thumbnail" src="{{assignment.featured_picture.url}}" alt="project.jpg" />
-            <div class="card__body">
-              <h3 class="project__title">{{assignment.title}}</h3>
-              <p><a class="project__author" href="profile.html">By {{assignment.host}}</a></p>
-              <div class="project__tags">
-
-                 {% for tag in assignment.tags.all %}
-                  <span class="tag tag--pill tag--main">
-                  <small>{{tag}}</small>
-                  </span>
-                  {% endfor %}
-
-                
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-      {% endfor  %}
-    </div>
-
-  </div> 
-
-</div>
 </main>
 
 
