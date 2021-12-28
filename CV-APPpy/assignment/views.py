@@ -64,12 +64,10 @@ def update_assignment(request,pk):
     if request.method=='POST':
         form=AssignmentForm(request.POST,request.FILES,instance=assignment)
         if form.is_valid():
-           assignment=form.save(commit= False)
-           assignment.host=request.user
-           assignment.save()
-           id=request.user.profile.id
-
-        return redirect('profile',pk=id)
+            assignment=form.save(commit= False)
+            assignment.host=request.user
+            assignment.save()
+            return redirect('account')
     context={'form':form}
     return render(request,'assignment/update-assignment.html',context)
 

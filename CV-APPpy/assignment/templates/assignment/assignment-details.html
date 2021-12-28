@@ -36,7 +36,7 @@
   <div id="Applicants" style="display:none">
     <section >
       {% for applicant in assignment.applicant.all%}
-      <li>{{ applicant }}</li>
+     <a href="{% url 'profile' applicant.id %}" > <li>{{ applicant }}</li> </a> 
       {% endfor %}
     </section>
   </div>

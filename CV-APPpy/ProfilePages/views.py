@@ -12,32 +12,33 @@ def profiles(request):
      return render(request,'ProfilePages/profiles.html')
 
 def profile_page(request,pk):
-    if request.user.is_authenticated:
-        profile = Profile.objects.get(id=pk)
-        assignments = [_ for _ in Assignment.objects.filter(host=request.user)]
-        
-        
-        context={'assignments':assignments,'profile':profile}
+
+    profile = Profile.objects.get(id=pk)
+    assignments = [_ for _ in Assignment.objects.filter(host=request.user)]
     
-        return render(request,'ProfilePages/profile-page.html',context)
-    return redirect('login')
+    
+    context={'assignments':assignments,'profile':profile}
+
+    return render(request,'ProfilePages/profile-page.html',context)
 
 
+
+@login_required(login_url = 'login')
 def profile_update(request, pk):
-    if(request.user.is_authenticated | request.user.is_superuser):
+   
         profile = Profile.objects.get(id=pk)
         form = CreateProfileForm(instance=profile)
         if request.method=='POST':
             form=CreateProfileForm(request.POST,request.FILES,instance=profile)
             if form.is_valid():
-                form.save()
-                return redirect('home')
+                profile=form.save(commit= False)
+                profile.save()
+                return redirect('account')
         context = {'form': form}
         return render(request,'ProfilePages/profile-update.html',context)
-    else:
-        return redirect('home')
+    
 
-
+@login_required(login_url = 'login')
 def account(request):
     id = request.user.profile.id
     profile = Profile.objects.get(id = id)

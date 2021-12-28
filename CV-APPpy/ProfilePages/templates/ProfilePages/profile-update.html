@@ -3,24 +3,34 @@
 
 {% block content %}
 
-<div class="home-container"> 
+<!-- Main Section -->
+<main class="formPage my-xl">
+   <div class="content-box">
 
-<div>
+      <div class="formWrapper">
+         
+           <br>
 
-</div>
-<div class="grid-item">
-   <h1> Update Profile</h1>
-   <form method="POST"   enctype="multipart/form-data" action="">
-      {% csrf_token %}
-      {{ form.as_ul }}
-      <input class="btn btn--sub btn--lg" type="submit" value ="Submit"/>
-   </form>
-</div>
-<div>
+           <form method="POST" enctype="multipart/form-data" action="" >
+            {% csrf_token %}
+            {% for field in form %}
 
+               <div class="form__field">
+                   <label for="formInput#text">{{field.label}}: </label>
+                   {{field}}
+               </div>
 
-</div>
+            {% endfor %}
 
-</div>
+               
+               <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+           </form>
+       </div>
+
+   </div>
+</main>
+
 
 {% endblock %}
+
+

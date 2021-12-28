@@ -11,10 +11,6 @@ def create_profile(sender, instance,created,**kwargs):
         else:
             user_local= instance
             profile=Profile.objects.get(user=user_local)
-            profile.first_name=user_local.first_name
-            profile.last_name=user_local.last_name
-            print(profile.user)
-            print(profile.first_name)
             profile.save()
 
 
