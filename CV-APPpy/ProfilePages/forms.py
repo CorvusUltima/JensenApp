@@ -15,7 +15,3 @@ class CreateProfileForm(ModelForm):
             field.widget.attrs.update({'class': 'input'})
 
 
-
-
-          
-	

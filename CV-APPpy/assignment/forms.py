@@ -13,9 +13,10 @@ class AssignmentForm(ModelForm):
         model=Assignment
         fields='__all__'
         exclude = ('host', 'applicant','slug')
+
+        def __init__(self,*args,**kwargs):
+            super(AssignmentForm, self).__init__(*args,**kwargs)
         
-
-
-
-          
-	
+            for _,field in self.fields.items():
+                field.widget.attrs.update({'class': 'input'})
+        
