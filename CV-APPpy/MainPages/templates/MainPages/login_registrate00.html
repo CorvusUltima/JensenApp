@@ -1,87 +1,293 @@
 {% extends "MainPages/layout.html" %}
-
-
-
-
+{% load static %}
+<link rel="stylesheet" href="{% static 'MainPages/styles/login_registrate00.css' %}" />
 
 {% block content %}
 
-<br>
 
-<div>  
-    {% if page == 'login' %}
-    <div>
-        <form METHOD="POST" action="">
-            {% csrf_token %}
+<style>
+:root {
+  --color-main: #71c6dd;
+  --color-main-light: #e1f6fb;
+  --color-dark: #3f4156;
+  --color-dark-medium: #51546e;
+  --color-dark-light: #696d97;
+  --color-light: #e5e5e5;
+  --color-gray: #8b8b8b;
+  --color-light-gray: #b2bdbd;
+  --color-bg: #2d2d39;
+  --color-success: #5dd693;
+  --color-error: #fc4b0b;
+}
+  .container {
+    max-width: 120rem;
+    width: 90%;
+    margin: auto;
+}
 
-            <label>Username :</label>
-            <input class="btn btn--sub btn--lg" type="text" name="username" placeholder="Enter Username"/>
+  .layout__box {
+      width: 90%;
+      max-width: 48rem;
+      min-height: 40rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -46%);
+      background-color: var(--color-light);
+      border-radius: 1rem;
+      box-shadow: 1px 1px 6px 3px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+  }
+  .layout__boxHeader {
+      display: flex;
+      padding: 1.5rem;
+      background-color: var(--color-dark);
+  }
 
-            <label>Password :</label>
-            <input  class="btn btn--sub btn--lg" type="password" name="password" placeholder="Enter Password"/>
+  .layout__boxTitle {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+  }
+  .layout__body {
+      margin: 3rem;
+  }
 
-            <input class="btn btn--sub btn--lg"  type="submit" value="Login"/>
+  .btn2 {
+      background-color: transparent;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+      transition: all ease-in-out 0.3s;
+      padding: 1rem 2rem;
+      border-radius: 5px;
+      box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      font-weight: 500;
+    }
 
+  .btn2--main {
+      background-color: var(--color-dark);
+      color: var(--color-light);
+  }
+  .btn2--link {
+      border-radius: 0;
+      padding: 0;
+      color: var(--color-main);
+      box-shadow: none;
+  }
+    
+  .btn2--link:hover {
+      text-decoration: underline;
+  }
+
+  .auth__action {
+      margin-top: 3rem;
+      text-align: center;
+  }
+  .auth__tagline {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--color-dark);
+      font-weight: 500;
+      font-size: 1.8rem;
+  }
+
+  /*==============================
+  =>  Topics
+  ================================*/
+.form__group {
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+  
+  .form__split {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .form__group label {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .form__group input,
+  .form__group textarea,
+  .form__group select {
+    background: transparent;
+    border: 1px solid var(--color-dark-light);
+    padding: 1rem;
+    border-radius: 3px;
+    width: 100%;
+    color: var(--color-dark);
+    font-weight: 500;
+    outline: none;
+  }
+  
+  .form__group input:focus,
+  .form__group textarea:focus {
+    border-color: var(--color-main);
+  }
+  
+  .form__group textarea {
+    background: transparent;
+    height: 10rem;
+    resize: none;
+  }
+  
+  .form__group select {
+    color: var(--color-gray);
+    font-weight: 400;
+  }
+  
+  .form__group select option {
+    background-color: var(--color-dark-light);
+    color: var(--color-light);
+    padding: 0 10rem;
+  }
+  
+  .form__action {
+    display: flex;
+    justify-content: flex-end;
+    gap: 3rem;
+  }
+  
+  .form__hide {
+    position: absolute;
+    left: -9999px;
+  }
+  
+  .form__avatar label {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--color-main);
+    cursor: pointer;
+  }
+  
+  .form__avatar label:hover {
+    text-decoration: underline;
+  }
+  
+  .layout__titleColor{
+    color: #e3e2e2;
+  }
+
+  .layout__loginMargin{
+    margin-top: 7px
+  }
+  .layout__errorMessage{
+    color: var(--color-error);
+    background-color: var(--color-light);
+  }
+
+
+</style>
+
+
+<main class="auth layout">
+
+  {% if page == 'login' %}
+  <div class="container">
+    <div class="layout__box">
+      <div class="layout__boxHeader">
+        <div class="layout__boxTitle">
+          <h3 class="layout__titleColor">Login</h3>
+        </div>
+      </div>
+      <div class="layout__body">
+        <form class="form" action="" method="POST">
+          {% csrf_token %}
+          <div class="form__group form__group">
+            <label for="room_name">Username</label>
+            <input id="username" name="username" type="username" placeholder="example@domain.com" />
+          </div>
+          <div class=" form__group">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password"
+              placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
+          </div>
+          {% if messages %}
+            <div>
+              <ul class="layout__errorMessage">
+                  {% for message in messages %}
+                  <p{% if message.tags %} class="{{ message.tags }} layout__errorMessage"{% endif %}>
+                      {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                      {{ message }}
+                  </p>
+                  {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+          <button class="btn2 btn2--main layout__loginMargin" type="submit">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+              <title>lock</title>
+              <path fill="#e3e2e2"
+                d="M27 12h-1v-2c0-5.514-4.486-10-10-10s-10 4.486-10 10v2h-1c-0.553 0-1 0.447-1 1v18c0 0.553 0.447 1 1 1h22c0.553 0 1-0.447 1-1v-18c0-0.553-0.447-1-1-1zM8 10c0-4.411 3.589-8 8-8s8 3.589 8 8v2h-16v-2zM26 30h-20v-16h20v16z">
+              </path>
+              <path fill="#e3e2e2"
+                d="M15 21.694v4.306h2v-4.306c0.587-0.348 1-0.961 1-1.694 0-1.105-0.895-2-2-2s-2 0.895-2 2c0 0.732 0.413 1.345 1 1.694z">
+              </path>
+            </svg>
+            Login
+          </button>
         </form>
 
-        <p> Haven't registered yet?  </p>
-        <a href="{% url 'register' %}">Register</a>
-
-        {% else %}
-        <div>
-
-            <form METHOD="POST" action="">
-                {% csrf_token %}
-                
-                <!--{{form.as_p}} -->
-                {% for field in registration_form %}
-                    <p style="margin-bottom: 5px">
-                        {{field.label_tag}}
-                        {{field}}
-                        {% if field.help_text %}
-                            <small>{{ field.help_text }}</small>
-                        {% endif %}
-                    </p>
-                        {% for error in field.errors %}
-                            <p><small style="color: red">{{ error }}</small> </p>
-                        {% endfor %}
-
-                {% endfor %}
-                <button class="btn btn--sub-lighter btn--lg" type="submit">Register</button>
-               
-                <!-- <input class="btn btn--sub btn--lg" type="submit" value="Register"/> -->
-                <p class="btn--margin"> Already registered?</p>
-                <a href="{% url 'login' %}">Login</a>
-            </form>
-
-
+        <div class="auth__action">
+          <p>Haven't signed up yet?</p>
+          <a href="{% url 'register' %}" class="btn2 btn2--link">Sign Up</a>
         </div>
-        
-
+      </div>
     </div>
-       
+  </div>
+  {% else %}
+  <div class="container">
+    <div class="layout__box">
+      <div class="layout__boxHeader">
+        <div class="layout__boxTitle">
+          <h3 class="layout__titleColor">Register</h3>
+        </div>
+      </div>
+      <div class="layout__body">
 
-    {% endif %}
-    
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
-            {{ message }}
-        </li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-            
+        <form class="form" action="" method="POST">
+          {% csrf_token %}
 
-</div>
+          {% for field in registration_form %}
+          <div class="form__group form__group">
+            <label for="room_name">{{field.label}}</label>
+            {{field}}
+            {% for error in field.errors %}
+              <p><small style="color: red">{{ error }}</small> </p>
+            {% endfor %}
+          </div>
+          {% endfor %}
 
 
-{% endblock %}
+          <button class="btn2 btn2--main" type="submit">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+              <title>lock</title>
+              <path fill="#e3e2e2"
+                d="M27 12h-1v-2c0-5.514-4.486-10-10-10s-10 4.486-10 10v2h-1c-0.553 0-1 0.447-1 1v18c0 0.553 0.447 1 1 1h22c0.553 0 1-0.447 1-1v-18c0-0.553-0.447-1-1-1zM8 10c0-4.411 3.589-8 8-8s8 3.589 8 8v2h-16v-2zM26 30h-20v-16h20v16z">
+              </path>
+              <path fill="#e3e2e2"
+                d="M15 21.694v4.306h2v-4.306c0.587-0.348 1-0.961 1-1.694 0-1.105-0.895-2-2-2s-2 0.895-2 2c0 0.732 0.413 1.345 1 1.694z">
+              </path>
+            </svg>
 
-{% block scripts %}
+            Register
+          </button>
+        </form>
 
-
-
-{% endblock %}
+        <div class="auth__action">
+          <p>Already signed up yet?</p>
+          <a href="{% url 'login' %}" class="btn2 btn2--link">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</main>
+{% endblock content %}
