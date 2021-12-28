@@ -50,30 +50,29 @@ def login_page(request):
 def logout_page(request):
     logout(request)
     return redirect('home')
-
+    
 def register_page(request):
-    form = UserCreationForm(request.POST)
     if request.method=='POST':
-        #form = RegistrationForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            user = form.cleaned_data.get('username')
-            user = user.lower()
-            raw_password = form.cleaned_data.get('password1')
-            account = authenticate(username=user, password=raw_password)
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            # Alternatively
+            # user = form.cleaned_data.get('username')
+            # user = user.lower()
+            # raw_password = form.cleaned_data.get('password')
+            # authenticate(username=user, password=raw_password)
             login(request,user)
-            #user=form.save(commit=False)
-            #user.username=user.username.lower()
-            #user.save()
-            #login(request,user)
-           
             return redirect('profile-update' ,request.user.profile.id)
-        #else :
-            #messages.error(request,'message')
-            # Do nothing, if the form has errors it will automatically have errors displayed   
+        else :
+            messages.error(request,'message')
+    else:
+        form = UserCreationForm()
     return render (request,'MainPages/login_registrate00.html',{'registration_form':form})
-    
-    
+
+
 def contact(request):
     """Renders the contact page."""
     assert isinstance(request, HttpRequest)
