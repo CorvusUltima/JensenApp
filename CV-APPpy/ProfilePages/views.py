@@ -1,7 +1,8 @@
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render , redirect
 from django.contrib.auth.decorators import login_required
 
-from assignment.models import Assignment
+from assignment.models import Applicant, Assignment
 from ProfilePages.forms import CreateProfileForm
 from ProfilePages.models import Profile
 
@@ -48,12 +49,20 @@ def account(request):
 
 def cancel_assignment(request,pk):
 
-    assignment = request.user.profile.assignments.get(id=pk)
-    if assignment is not None:
+    try:
+        assignment = request.user.profile.assignments.get(id=pk)
+    except  Assignment.DoesNotExist:
+        assignment = None
+        
+    #applicant = Applicant.objects.filter(owner=request.user).first()
+    a_list = [a for a in assignment.applicant.all() if a.owner == request.user]
+    if assignment:
+        assignment.applicant.remove(*a_list)
+        a_list[0].delete()
         request.user.profile.assignments.remove(assignment)
-       
-      
-    return redirect('account')
+        
+          
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
     

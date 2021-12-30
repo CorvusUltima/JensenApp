@@ -22,7 +22,7 @@ urlpatterns = [
 
     path('register/',views.register_page, name='register'),
 
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls , name='admin'),
     
     path('', include('assignment.urls')),
 
