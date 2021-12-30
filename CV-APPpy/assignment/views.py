@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
-
-from ProfilePages.models import Profile
-from .models import Assignment, Applicant, Location
-from .forms import RegistrationForm ,AssignmentForm
+from .models import Assignment, Applicant
+from .forms import AssignmentForm
 
 # Create your views here.
 
@@ -10,18 +8,15 @@ from .forms import RegistrationForm ,AssignmentForm
 def apply(request, pk):
 
     assignment=Assignment.objects.get(id=pk)
-    form = RegistrationForm(request.POST)
-
-    if form.is_valid():
-        applicant,_ = Applicant.objects.get_or_create(**form.cleaned_data)
+    applicant=Applicant(owner=request.user)
+    applicant.save()
+   
+    if  applicant not in assignment.applicant.all():
         assignment.applicant.add(applicant)
-        profile=Profile.objects.get(id=request.user.profile.id)
-        profile.assignments.add(assignment)
-        return redirect('confirm-registration')
-     
-       
-    context={'form':form,'assignment' : assignment}
-    return render(request,'assignment/applicant-form.html',context)
+        assignment.save()
+        request.user.profile.assignments.add(assignment)
+        return redirect('assignment-details',pk)
+    return redirect('all-assignments')
 
 
 def index(request):
@@ -48,7 +43,6 @@ def create_assignment(request):
         if form.is_valid():
            assignment=form.save(commit= False)
            assignment.host=request.user
-           assignment.slug=assignment.title.lower().replace(' ', '-')
            assignment.save()
            id=request.user.profile.id
 
