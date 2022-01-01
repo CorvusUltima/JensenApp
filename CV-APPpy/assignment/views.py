@@ -27,15 +27,6 @@ def index(request):
                   {'isActive': True, 'assignments': assignments})
 
 
-def get_all_user_assignments(request):
-    assignments = []
-    for assignment in Assignment.objects.filter(host=request.user):
-        assignments.append(assignment)
-    context={'assignments':assignments}
-    return render(request,'profile',context)
-
-
-
 def create_assignment(request):
     form = AssignmentForm()
     if request.method=='POST':
@@ -48,7 +39,7 @@ def create_assignment(request):
 
         return redirect('profile',pk=id)
     context={'form':form}
-    return render(request,'assignment/create-assignment.html',context)
+    return render(request,'assignment/assignment-form.html',context)
 
 
 def update_assignment(request,pk):
@@ -63,7 +54,7 @@ def update_assignment(request,pk):
             assignment.save()
             return redirect('account')
     context={'form':form}
-    return render(request,'assignment/update-assignment.html',context)
+    return render(request,'assignment/assignment-form.html',context)
 
 
 
