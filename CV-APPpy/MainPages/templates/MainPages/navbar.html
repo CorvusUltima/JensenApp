@@ -125,7 +125,7 @@
         </nav>
         <div class="signInSignOutLayout">
             {% if request.user.is_authenticated %}
-            <li class="btn btn--sub logInOutRegBtn signInBtn"><a href="{% url 'logout' %}">Logout </a></li>
+            <a class="logInOutRegBtn signInBtn" href="{% url 'logout' %}">Logout</a>
             {% else %}
             <li class="header__menuItem logInOutRegBtn"> <a href="{% url 'register' %}">Join now</a></li>
             <a class="logInOutRegBtn signInBtn" href="{% url 'login' %}">Sign in</a>
