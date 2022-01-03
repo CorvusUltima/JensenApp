@@ -67,7 +67,7 @@ def register_page(request):
             login(request,user)
             return redirect('profile-update' ,request.user.profile.id)
     else:
-        form = UserCreationForm()
+        form = UserCreationForm(request.POST)
     return render (request,'MainPages/login_registrate00.html',{'registration_form':form})
 
 

@@ -1,6 +1,11 @@
 
 
 {% load static %}
+
+<style>
+    
+</style>
+
 <header class="header">
 
     <div class="container container--narrow">
@@ -29,9 +34,9 @@
                     {% if request.user.is_authenticated %}
                     <li class="header__menuItem"><a href="{% url 'account'  %}" >{{ user.username}} </a></li>
                     <li class="btn btn--sub"><a href="{% url 'logout' %}">Logout </a></li>
-
                     {% else %}
-                    <li class="btn btn--sub"> <a href="{% url 'login' %}">Login </a></li>
+                    <li class="header__menuItem"> <a href="{% url 'register' %}">Join now</a></li>
+                    <li class="btn btn--sub"> <a href="{% url 'login' %}">Sign in</a></li>
                     {% endif  %}
                 </ul>
                 
