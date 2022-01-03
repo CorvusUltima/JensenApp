@@ -1,0 +1,61 @@
+section {
+  max-width: 40rem;
+  margin: 3rem auto;
+}
+
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.assignment-item {
+  margin: 1rem 0;
+  background-color: #279fe4;
+  padding: 2rem;
+  color: white;
+  border-radius: 4px;
+}
+
+.assignment-summary {
+  display: flex;
+  align-items: flex-start;
+}
+
+.assignment-image {
+  margin-right: 2rem;
+}
+
+.assignment-image img {
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.assignment-details h3 {
+  color: inherit;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.assignment-details address {
+  font-style: italic;
+}
+
+.assignment-actions {
+  margin-top: 1.5rem;
+  text-align: right;
+}
+
+.assignment-actions .btn {
+  background-color: #2136f8;
+  border-color: #0db7eb;
+  color: #350490;
+  padding: 0.75rem 2rem;
+}
+
+.assignment-actions .btn:hover {
+  background-color: #17a2f3;
+  border-color:#0db7eb;
