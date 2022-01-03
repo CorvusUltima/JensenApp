@@ -3,46 +3,134 @@
 {% load static %}
 
 <style>
-    
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    li, a, button {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        text-decoration: none;
+    }
+    .navBarFlex {
+        padding-left: 30px 0;
+    }
+
+
+
+    .header {
+        padding-left: 10%;
+        padding-right: 10%;
+        position: fixed;
+        z-index: 111;
+        background-color: var(--color-sub);
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+        padding-right: 0;
+    }
+
+    .header > .containerNew {
+        display: flex;
+        justify-content: flex-start;
+        padding: 0 0;
+        margin: 0 0 0 0;
+        align-items: baseline;
+
+    }
+    .logo{
+        cursor: pointer;
+        margin-right: 5%;
+    }
+    .nav__links li {
+        display: inline-block;
+        padding: 0px 20px;
+    }
+    .nav__links li a {
+        transition: all 0.3s ease 0s;
+    }
+    .nav__links li a:hover {
+        color: #0088a9;
+    }
+    .logInOutRegBtn {
+        /*margin-left: 20px;*/
+        padding: 9px 25px;
+        background-color: var(--color-main-dark);
+        border-radius: 50px;
+        border-color: rgb(10, 102, 194);
+        cursor: pointer;
+        transition: all 0.3s ease 0s;
+    }
+
+    .signInBtn{
+        text-decoration: solid;
+        text-decoration-color: rgb(10, 102, 194);
+        box-shadow: rgb(10, 102, 194) 0px 0px 0px 1px inset;
+        color: rgb(74, 144, 214);
+        font-size: 16px;
+    }
+    .logInOutRegBtn a:hover{
+        transition: all 0.3s ease 0s;
+        color: #0088a9;
+    }
+
+    .signInSignOutLayout{
+        display: flex;
+        margin-left: auto;
+        margin-right: 15%;
+    }
+    button:hover{
+        background-color: rgba(0, 136, 169, 0.8);
+    }
+
+    .navMidBar{
+        margin-right: auto;
+    }
+
+
 </style>
 
-<header class="header">
+<header class="header navBarFlex">
 
-    <div class="container container--narrow">
+    <!-- <div class="container container--narrow"> -->
+    <div class="containerNew">
 
-
-        <a href="/" class="header__logo">
+        <a href="/" class="header__logo logo">
             <img src="https://torqueengineering.se/images/custom/Appearance/7.png"  width="30" 
             height="25"  alt="DevSearch Logo" />
         </a>
 
-        <nav class="header__nav">
+        <!--<nav class="header__nav">-->
+        <nav class="navMidBar">
 
-
+            <!--
             <input type="checkbox" id="responsive-menu" />
             <label for="responsive-menu" class="toggle-menu">
                 <span>Menu</span>
                 <div class="toggle-menu__lines"></div>
-            </label>   
+            </label>   -->
 
             
-                <ul class="header__menu">
+                <ul class="nav__links">
                     <li class="header__menuItem"><a href= "{% url 'home' %}">Home</a></li>
                     <li class="header__menuItem"><a href= "{% url 'about' %}">About</a></li>
                     <li class="header__menuItem"><a href= "{% url 'contact' %}">Contact</a></li>'
                     <li class="header__menuItem"><a href="{% url 'all-assignments' %}">Work with us </a></li>
                     {% if request.user.is_authenticated %}
                     <li class="header__menuItem"><a href="{% url 'account'  %}" >{{ user.username}} </a></li>
-                    <li class="btn btn--sub"><a href="{% url 'logout' %}">Logout </a></li>
-                    {% else %}
-                    <li class="header__menuItem"> <a href="{% url 'register' %}">Join now</a></li>
-                    <li class="btn btn--sub"> <a href="{% url 'login' %}">Sign in</a></li>
                     {% endif  %}
                 </ul>
-                
-        
         </nav>
-        
+        <div class="signInSignOutLayout">
+            {% if request.user.is_authenticated %}
+            <li class="btn btn--sub logInOutRegBtn signInBtn"><a href="{% url 'logout' %}">Logout </a></li>
+            {% else %}
+            <li class="header__menuItem logInOutRegBtn"> <a href="{% url 'register' %}">Join now</a></li>
+            <a class="logInOutRegBtn signInBtn" href="{% url 'login' %}">Sign in</a>
+            {% endif  %}
+        </div>
     </div>
 
 </header>
