@@ -13,9 +13,9 @@
     </section>
 {% else %}
     <h3>You have applied for this assignment</h3>
-        <a class="tag tag--pill tag--main settings__btn"   href="{% url 'cancel-assignment' assignment.id %}">Cancel</a></li> 
-    <section id="continue">
+        <a class="tag tag--pill tag--main settings__btn" href="{% url 'cancel-assignment' assignment.id %}" onclick="return confirm('Are you sure that you would like to cancel this assignment?')">Cancel</a></li> 
+        <section id="continue">
         <p> Sign up for more??</p>
-        <p><a href="/assignment" class="btn">Explore our assaignments</a></p>
+        <p><a href="/assignment" class="btn">Explore our assignments</a></p>
     </section>
 {% endif %}
