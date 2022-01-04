@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Assignment, Applicant
+from .models import Assignment, Applicant, models
 from .forms import AssignmentForm
 
 # Create your views here.
@@ -19,11 +19,20 @@ def apply(request, pk):
     return redirect('all-assignments')
 
 
-def index(request):
-   
-    assignments = Assignment.objects.all()
 
-    return render(request, 'assignment/index.html',
+def index(request):
+    text = request.GET.get('text')
+    print(str(text))
+    if(text is None):
+        assignments = Assignment.objects.all()
+    else:
+        assignments = Assignment.objects.filter(
+            models.Q(title__icontains = text) |
+            models.Q(host__username__icontains = text) |
+            models.Q(description__icontains = text)
+            )
+
+    return render(request, 'Assignment/assignments-all.html',
                   {'isActive': True, 'assignments': assignments})
 
 
@@ -39,7 +48,7 @@ def create_assignment(request):
 
         return redirect('profile',pk=id)
     context={'form':form}
-    return render(request,'assignment/assignment-form.html',context)
+    return render(request,'Assignment/assignment-form.html',context)
 
 
 def update_assignment(request,pk):
@@ -54,7 +63,7 @@ def update_assignment(request,pk):
             assignment.save()
             return redirect('account')
     context={'form':form}
-    return render(request,'assignment/assignment-form.html',context)
+    return render(request,'Assignment/assignment-form.html',context)
 
 
 
@@ -63,7 +72,7 @@ def assignment_details(request, pk):
     view_all_applicants=True
     try: 
           assignment= Assignment.objects.get(id=pk)
-          return render(request, 'assignment/assignment-details.html',
+          return render(request, 'Assignment/assignment-details.html',
                          {
                         'assignment_found': True,
                         'assignment': assignment ,
@@ -72,7 +81,7 @@ def assignment_details(request, pk):
                                        
     except Exception as exc:
          print(exc)
-         return render(request, 'assignment/assignment-details.html',
+         return render(request, 'Assignment/assignment-details.html',
                   { 'assignment_found': False
                    })
 
@@ -80,6 +89,6 @@ def assignment_details(request, pk):
 
 
 def registration_confirmation(request):
-    return render(request, 'assignment/registration-success.html')
+    return render(request, 'Assignment/registration-success.html')
 
 
