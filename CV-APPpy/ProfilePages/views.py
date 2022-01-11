@@ -17,7 +17,6 @@ def profile_page(request,pk):
     profile = Profile.objects.get(id=pk)
     assignments = [_ for _ in Assignment.objects.filter(host=request.user)]
     
-    
     context={'assignments':assignments,'profile':profile}
 
     return render(request,'ProfilePages/profile-page.html',context)
@@ -54,7 +53,6 @@ def cancel_assignment(request,pk):
     except  Assignment.DoesNotExist:
         assignment = None
         
-    #applicant = Applicant.objects.filter(owner=request.user).first()
     a_list = [a for a in assignment.applicant.all() if a.owner == request.user]
     if assignment:
         assignment.applicant.remove(*a_list)
