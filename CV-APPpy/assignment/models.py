@@ -19,9 +19,9 @@ class Tag(models.Model):
        return self.name
 
 class Applicant(models.Model):
-   
     owner=models.ForeignKey(User, on_delete=models.CASCADE ,null=True)
-   
+    
+    
 
     def __str__(self):
         profile = self.owner.profile
