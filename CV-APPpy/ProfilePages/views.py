@@ -42,7 +42,9 @@ def profile_update(request, pk):
 def account(request):
     id = request.user.profile.id
     profile = Profile.objects.get(id = id)
+    print(profile)
     assignments = [_ for _ in Assignment.objects.filter(host=request.user)]
+    print(str(len(assignments)))
     context = {'assignments':assignments, 'profile' : profile}
     return render(request,'ProfilePages/account.html',context)
 
