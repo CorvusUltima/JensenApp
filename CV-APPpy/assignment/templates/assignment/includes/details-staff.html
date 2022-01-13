@@ -3,7 +3,7 @@
 <div id="Applicants" style="display:none">
 <section >
 {% for applicant in assignment.applicant.all%}
-<a href="{% url 'profile' applicant.id %}" > <li>{{ applicant }}</li> </a> <br>
+<a href="{% url 'profile' applicant.owner.profile.id %}" > <li>{{ applicant }}</li> </a> <br>
 {% endfor %}
 </section>
 </div>
