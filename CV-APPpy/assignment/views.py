@@ -37,15 +37,14 @@ def index(request):
 
 
 def create_assignment(request):
-    tags=[]
+  
     form = AssignmentForm()
-
     tag_form = TagForm()
-    form.initial['Title'] = "TEST"
+
     if request.method=='POST':
         form=AssignmentForm(request.POST,request.FILES )
         tag_form = TagForm(request.POST)
-        
+        print('pre ad taga smo ')
         if 'add_tag' in request.POST:
             print('Add tag')
             if tag_form.is_valid:
@@ -59,7 +58,7 @@ def create_assignment(request):
                     return redirect('account')
                  
     
-    context={'form':form ,'tag_form':tag_form ,'tags' : tags}
+    context={'form':form ,'tag_form':tag_form }
     return render(request,'Assignment/assignment-form.html',context)
 
 
