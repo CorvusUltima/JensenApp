@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Assignment, Applicant, models
-from .forms import AssignmentForm
+from .models import Assignment, Applicant, Location, Tag, models
+from .forms import AssignmentForm, TagForm
 
 # Create your views here.
 
@@ -37,17 +37,28 @@ def index(request):
 
 
 def create_assignment(request):
+    tags = Tag.objects.all()
     form = AssignmentForm()
+
+    tag_form = TagForm()
+    form.initial['Title'] = "TEST"
     if request.method=='POST':
         form=AssignmentForm(request.POST,request.FILES )
-        if form.is_valid():
-           assignment=form.save(commit= False)
-           assignment.host=request.user
-           assignment.save()
-           id=request.user.profile.id
-
-        return redirect('profile',pk=id)
-    context={'form':form}
+        tag_form = TagForm(request.POST)
+        
+        if 'add_tag' in request.POST:
+            print('Add tag')
+            if tag_form.is_valid:
+                tag_form.save()
+        if 'Submit' in request.POST: 
+             if form.is_valid:
+                    assignment= form.save(commit=False)
+                    assignment.host=request.user
+                    assignment.save()
+                    return redirect('account')
+                 
+    
+    context={'form':form ,'tag_form':tag_form ,'tags' : tags}
     return render(request,'Assignment/assignment-form.html',context)
 
 

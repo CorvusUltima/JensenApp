@@ -1,11 +1,21 @@
 from django.forms import ModelForm
-from .models import Applicant
+from django.forms.models import inlineformset_factory
+from .models import Applicant, Tag
 from .models import Assignment
 
 class ApplicationForm(ModelForm):
     class Meta:
         model=Applicant
         fields='__all__'
+
+
+class TagForm(ModelForm):
+    class Meta:
+        model = Tag
+        fields='__all__'
+        exclude = ('owner',)
+
+
 
 
 class AssignmentForm(ModelForm):
