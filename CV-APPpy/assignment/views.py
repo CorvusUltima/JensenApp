@@ -37,7 +37,7 @@ def index(request):
 
 
 def create_assignment(request):
-    tags = Tag.objects.all()
+    tags=[]
     form = AssignmentForm()
 
     tag_form = TagForm()
@@ -49,12 +49,13 @@ def create_assignment(request):
         if 'add_tag' in request.POST:
             print('Add tag')
             if tag_form.is_valid:
-                tag_form.save()
+              tag_form.save()   
         if 'Submit' in request.POST: 
              if form.is_valid:
                     assignment= form.save(commit=False)
                     assignment.host=request.user
                     assignment.save()
+                    form.save_m2m()
                     return redirect('account')
                  
     
