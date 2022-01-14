@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "CV-APPpy", "CV-APPpy\CV-APPpy.pyproj", "{97C8BCA9-32E0-41CF-AA40-819858B11502}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "JensenApp", "CV-APPpy\JensenApp.pyproj", "{97C8BCA9-32E0-41CF-AA40-819858B11502}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
