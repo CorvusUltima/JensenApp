@@ -3,15 +3,12 @@ Definition of views.
 """
 
 from datetime import datetime
-from typing import ContextManager
 from django.shortcuts import render , redirect
 from django.contrib import messages
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login ,logout
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpRequest
-from django.urls import reverse
-from MainPages.forms import RegistrationForm
+
 
 def home(request):
     """Renders the home page."""
