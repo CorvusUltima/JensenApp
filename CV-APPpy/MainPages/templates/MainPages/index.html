@@ -2,9 +2,16 @@
 
 {% block content %}
 {% load static %}
-<div class="home-container">
 
-  
+<div class="home-container">
+    <h4>All Rooms</h4>
+        <ul>
+            {% for room in rooms %}
+                <br>
+                <li>{{ room }}  </li>   
+                <br>  
+            {% endfor %}
+        </ul>   
 </div>
 
 

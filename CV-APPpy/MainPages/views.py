@@ -10,17 +10,39 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpRequest
 
 
+
 def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
+    rooms=['1000 code chalange','JS join this shity language ']
+    context ={'rooms':rooms, 'title':'Home Page','year':datetime.now().year }
     return render(
         request,
         'MainPages/index.html',
-        {
-            'title':'Home Page',
-            'year':datetime.now().year,
-        }
+      context
     )
+
+def room (request,pk):
+    return render (request, 'MainPages/index.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def login_page(request):
     page = 'login'
@@ -67,29 +89,3 @@ def register_page(request):
         form = UserCreationForm(request.POST)
     return render (request,'MainPages/login_registrate00.html',{'registration_form':form})
 
-
-def contact(request):
-    """Renders the contact page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'MainPages/contact.html',
-        {
-            'title':'Contact',
-            'message':'Your contact page.',
-            'year':datetime.now().year,
-        }
-    )
-
-def about(request):
-    """Renders the about page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'MainPages/about.html',
-        {
-            'title':'About',
-            'message':'Your application description page.',
-            'year':datetime.now().year,
-        }
-    )

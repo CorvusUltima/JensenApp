@@ -22,6 +22,7 @@ def profile_page(request,pk):
 
 
 
+
 @login_required(login_url = 'login')
 def profile_update(request, pk):
    
