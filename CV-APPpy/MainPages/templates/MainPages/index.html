@@ -8,7 +8,8 @@
         <ul>
             {% for room in rooms %}
                 <br>
-                <li>{{ room }}  </li>   
+                
+                <li> <a href="{% url 'room' room.id %} " >{{ room.name }}</a> </li>   
                 <br>  
             {% endfor %}
         </ul>   

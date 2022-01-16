@@ -13,15 +13,10 @@ def profiles(request):
 
 def profile_page(request,pk):
 
-    profile = Profile.objects.get(id=pk)
-    
-    
+    profile = Profile.objects.get(id=pk)  
     context={'profile':profile}
 
     return render(request,'ProfilePages/profile-page.html',context)
-
-
-
 
 @login_required(login_url = 'login')
 def profile_update(request, pk):

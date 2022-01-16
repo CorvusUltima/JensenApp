@@ -14,6 +14,11 @@ urlpatterns = [
 
     path('admin/', admin.site.urls , name='admin'),
 
+    path('room/<str:pk>', views.room , name='room'),
+
+
+
+
     
 ]
 

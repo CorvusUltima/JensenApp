@@ -8,13 +8,15 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login ,logout
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpRequest
+from .models import Room 
 
 
 
 def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
-    rooms=['1000 code chalange','JS join this shity language ']
+
+    rooms=Room.objects.all()
     context ={'rooms':rooms, 'title':'Home Page','year':datetime.now().year }
     return render(
         request,
@@ -23,7 +25,9 @@ def home(request):
     )
 
 def room (request,pk):
-    return render (request, 'MainPages/index.html')
+    room=Room.objects.get(id=pk)
+    context={'room': room}
+    return render (request, 'MainPages/room.html' , context )
 
 
 
