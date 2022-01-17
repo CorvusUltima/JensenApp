@@ -8,23 +8,7 @@
     <div class="grid-item-normal">
         <a href="http://127.0.0.1:8000/admin/">Django Admin panel</a>
         <br>
-        <a href="{% url 'create-assignment' %}">Create new assignment</a>
-        <br>
-        <br>
-        <h4>All Assignments</h4>
-        <ul>
-        {% for assignment in assignments %}
-            <br>
-            <a href="{% url 'assignment-details' assignment.id %}">View</a> &nbsp  &nbsp<a href="{% url 'update-assignment' assignment.id %}">Update</a>
-            <img width=150 height=150 class="project__thumbnail" src="{{assignment.featured_picture.url}}" alt="project.jpg" />
-            <li>Name: <a href="{% url 'assignment-details' assignment.id %}">{{assignment.title}}</a></li>  
-            <li>Location: {{assignment.location}}  </li>
-            
-            <li> <a href="{% url 'assignment-details' assignment.id %}"> Applicants: {{ assignment.applicant.count }} </a></li>
-            <br>
-        
-        {% endfor %}
-        </ul>
+    
 
     </div>
 

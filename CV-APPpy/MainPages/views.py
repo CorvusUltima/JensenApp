@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate, login ,logout
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpRequest
 from .models import Room 
+from .forms import RoomForm
 
 
 
@@ -29,8 +30,16 @@ def room (request,pk):
     context={'room': room}
     return render (request, 'MainPages/room.html' , context )
 
-
-
+def create_room(request):
+    form = RoomForm()
+    if request.method=='POST':
+        form=RoomForm(request.POST)
+        if form.is_valid():
+            form.save()
+    
+            return redirect('account')
+    context={'form':form}
+    return render (request, 'MainPages/room-form.html' , context)
 
 
 
