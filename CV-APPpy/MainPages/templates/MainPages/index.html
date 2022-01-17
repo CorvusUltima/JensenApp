@@ -3,14 +3,16 @@
 {% block content %}
 {% load static %}
 
-<div class="home-container">
+<div >
     <h4>All Rooms</h4>
         <ul>
             {% for room in rooms %}
                 <br>
-                
-                <li> <a href="{% url 'room' room.id %} " >{{ room.name }}</a> </li>   
-                <br>  
+                <span>@{{ room.host}}</span>
+                <br>
+                <li> <a href="{% url 'room' room.id %} " >{{ room.name }}</a> </li> 
+                <br>
+                <span> --------{{ room.topic}}--------</span> 
             {% endfor %}
         </ul>   
 </div>

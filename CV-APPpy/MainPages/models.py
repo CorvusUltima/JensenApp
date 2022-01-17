@@ -18,10 +18,10 @@ class Topic(models.Model):
     topic=models.CharField(max_length=100)
 
     def __str__(self):
-        return self.name
+        return self.topic
 
 class Room(models.Model):      
-    owner = models.OneToOneField(User,on_delete=models.CASCADE,null=True)
+    host = models.OneToOneField(User,on_delete=models.CASCADE,null=True)
     topic= models.ForeignKey(Topic,on_delete=models.SET_NULL,null=True)
     name = models.CharField(max_length=100)
     description=models.TextField(max_length=500)
