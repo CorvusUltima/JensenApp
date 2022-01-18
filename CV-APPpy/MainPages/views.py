@@ -43,15 +43,21 @@ def create_room(request):
 
 
 
-
-
-
-
-
-
-
-
-
+def update_room(request,pk):
+    room = Room.objects.get(id=pk)
+    print(room)
+    form = RoomForm(instance = room )
+    
+    if request.method == 'POST':
+        form=RoomForm(request.POST,instance = room)
+        print('PRE-VALID')
+      
+        if form.is_valid():
+            print('FORM IS VALID')
+            form.save()
+            return redirect('home')
+    context={'form':form}
+    return render (request, 'MainPages/room-form.html' , context)
 
 
 
