@@ -3,27 +3,65 @@ Definition of views.
 """
 
 from datetime import datetime
-from typing import ContextManager
 from django.shortcuts import render , redirect
 from django.contrib import messages
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login ,logout
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpRequest
-from django.urls import reverse
-from MainPages.forms import RegistrationForm
+from .models import Room 
+from .forms import RoomForm
+
+
 
 def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
+
+    rooms=Room.objects.all()
+    context ={'rooms':rooms, 'title':'Home Page','year':datetime.now().year }
     return render(
         request,
         'MainPages/index.html',
-        {
-            'title':'Home Page',
-            'year':datetime.now().year,
-        }
+      context
     )
+
+def room (request,pk):
+    room=Room.objects.get(id=pk)
+    context={'room': room}
+    return render (request, 'MainPages/room.html' , context )
+
+def create_room(request):
+    form = RoomForm()
+    if request.method=='POST':
+        form=RoomForm(request.POST)
+        if form.is_valid():
+            form.save()
+    
+            return redirect('account')
+    context={'form':form}
+    return render (request, 'MainPages/room-form.html' , context)
+
+
+
+def update_room(request,pk):
+    room = Room.objects.get(id=pk)
+    print(room)
+    form = RoomForm(instance = room )
+    
+    if request.method == 'POST':
+        form=RoomForm(request.POST,instance = room)
+        print('PRE-VALID')
+      
+        if form.is_valid():
+            print('FORM IS VALID')
+            form.save()
+            return redirect('home')
+    context={'form':form}
+    return render (request, 'MainPages/room-form.html' , context)
+
+
+
+
 
 def login_page(request):
     page = 'login'
@@ -70,29 +108,3 @@ def register_page(request):
         form = UserCreationForm(request.POST)
     return render (request,'MainPages/login_registrate00.html',{'registration_form':form})
 
-
-def contact(request):
-    """Renders the contact page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'MainPages/contact.html',
-        {
-            'title':'Contact',
-            'message':'Your contact page.',
-            'year':datetime.now().year,
-        }
-    )
-
-def about(request):
-    """Renders the about page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'MainPages/about.html',
-        {
-            'title':'About',
-            'message':'Your application description page.',
-            'year':datetime.now().year,
-        }
-    )

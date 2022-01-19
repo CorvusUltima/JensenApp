@@ -2,24 +2,31 @@
 
 {% block content %}
 {% load static %}
-<div class="home-container">
 
-    <div>
-
+<div class=home-container >
+    <div class= grid-item-normal>
+      <h2>Browse topic's</h2>
+      <hr> 
     </div>
-    <div>
-        <br>
-        <br>
-        
-            <img src="{%  static 'images/torque.jpeg'  %}"  width="300" height="320"  alt="DevSearch Logo" />
-            <p><a href="https://torqueengineering.se/" class="btn btn--sub btn--lg">Learn more &raquo;</a></p>
-      
-        <div class="row">
-            
-        </div>
-
+    <div class= grid-item-normal>
+        <h2>All Rooms</h2>
+        <ul>
+            <li> <a href="{% url 'create-room'  %} " >Create new room</a> </li> 
+            {% for room in rooms %}
+                <br>
+                <li> <a href="{% url 'update-room' room.id %} " >Update</a> </li> 
+                <span>@{{ room.host}}</span>
+                <br>
+                <li> <a href="{% url 'room' room.id %} " >{{ room.name }}</a> </li> 
+                <br>
+                <span> --------{{ room.topic}}--------</span> 
+                <hr>  
+            {% endfor %}
+        </ul>   
     </div>
-
+    <div class= grid-item-normal>
+       
+    </div>
 </div>
 
 

@@ -8,8 +8,6 @@ urlpatterns = [
     path('profiles',views.profiles, name='profiles'),
 
     path('profile/update/<str:pk>',views.profile_update, name='profile-update'),
-
-    path('profile/cancel-assignment/<str:pk>',views.cancel_assignment, name='cancel-assignment'),
     
     path('account/',views.account,name='account')
     

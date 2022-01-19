@@ -16,7 +16,7 @@
     <div class="containerNew">
 
         <a href="/" class="header__logo logo">
-            <img src="https://torqueengineering.se/images/custom/Appearance/7.png"  width="30" 
+            <img src= "{% static 'images/logo.svg' %}"  width="30"
             height="25"  alt="DevSearch Logo" />
         </a>
 
@@ -33,9 +33,6 @@
             
                 <ul class="nav__links">
                     <li class="header__menuItem"><a href= "{% url 'home' %}">Home</a></li>
-                    <li class="header__menuItem"><a href= "{% url 'about' %}">About</a></li>
-                    <li class="header__menuItem"><a href= "{% url 'contact' %}">Contact</a></li>'
-                    <li class="header__menuItem"><a href="{% url 'all-assignments' %}">Work with us </a></li>
                     {% if request.user.is_authenticated %}
                     <li class="header__menuItem"><a href="{% url 'account'  %}" >{{ user.username}} </a></li>
                     {% endif  %}
