@@ -3,8 +3,13 @@
 {% block content %}
 {% load static %}
 
-<div >
-    <h4>All Rooms</h4>
+<div class=home-container >
+    <div class= grid-item-normal>
+      <h2>Browse topic's</h2>
+      <hr> 
+    </div>
+    <div class= grid-item-normal>
+        <h2>All Rooms</h2>
         <ul>
             <li> <a href="{% url 'create-room'  %} " >Create new room</a> </li> 
             {% for room in rooms %}
@@ -18,6 +23,10 @@
                 <hr>  
             {% endfor %}
         </ul>   
+    </div>
+    <div class= grid-item-normal>
+       
+    </div>
 </div>
 
 
