@@ -19,18 +19,7 @@
             <img src= "{% static 'images/logo.svg' %}"  width="30"
             height="25"  alt="DevSearch Logo" />
         </a>
-
-        <!--<nav class="header__nav">-->
-        <nav class="navMidBar">
-
-            <!--
-            <input type="checkbox" id="responsive-menu" />
-            <label for="responsive-menu" class="toggle-menu">
-                <span>Menu</span>
-                <div class="toggle-menu__lines"></div>
-            </label>   -->
-
-            
+        <nav class="navMidBar">   
                 <ul class="nav__links">
                     <li class="header__menuItem"><a href= "{% url 'home' %}">Home</a></li>
                     {% if request.user.is_authenticated %}
@@ -38,6 +27,12 @@
                     {% endif  %}
                 </ul>
         </nav>
+        <div>
+            <form method="GET" action="{% url 'home'%}">
+                <input type="text" name="q" placeholder="search Rooms "/>
+
+            </form>
+        </div>
         <div class="signInSignOutLayout">
             {% if request.user.is_authenticated %}
             <a class="logInOutRegBtn signInBtn" href="{% url 'logout' %}">Logout</a>

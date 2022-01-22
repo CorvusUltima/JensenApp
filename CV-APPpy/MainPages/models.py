@@ -15,10 +15,10 @@ from django.contrib.auth.models import  User
 
 
 class Topic(models.Model):
-    topic=models.CharField(max_length=100)
+    name=models.CharField(max_length=100)
 
     def __str__(self):
-        return self.topic
+        return self.name
 
 class Room(models.Model):      
     host = models.OneToOneField(User,on_delete=models.CASCADE,null=True)
