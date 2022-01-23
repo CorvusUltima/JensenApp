@@ -23,6 +23,7 @@ class Topic(models.Model):
 class Room(models.Model):      
     host = models.OneToOneField(User,on_delete=models.CASCADE,null=True)
     topic= models.ForeignKey(Topic,on_delete=models.SET_NULL,null=True)
+    participants=models.ManyToManyField(User,related_name='participants',blank=True)
     name = models.CharField(max_length=100)
     description=models.TextField(max_length=500)
     created = models.DateTimeField(auto_now_add=True,blank=True,null=True)

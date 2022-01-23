@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login ,logout
 from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Q
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponseRedirect
 from .models import Message, Room, Topic 
 from .forms import RoomForm
 
@@ -32,6 +32,7 @@ def home(request):
 
 def room (request,pk):
     room=Room.objects.get(id=pk)
+    participants=room.participants.all()
     room_messages= room.message_set.all().order_by('-created')
     if request.method == "POST":
         message=Message.objects.create(
@@ -39,8 +40,13 @@ def room (request,pk):
         room=room,
         body=request.POST.get('body')
         )
+        if room.participants.filter(id=request.user.id):  
+            return redirect('room',pk) 
+        else:
+            room.participants.add(request.user)
+
         return redirect('room',pk)
-    context={'room': room,'room_messages': room_messages}
+    context={'room': room,'room_messages': room_messages,'participants':participants}
     return render (request, 'MainPages/room.html' , context )
 
 def create_room(request):
@@ -72,6 +78,14 @@ def update_room(request,pk):
     context={'form':form}
     return render (request, 'MainPages/room-form.html' , context)
 
+def delete_message(request,pk):
+    message=Message.objects.get(id=pk)
+    print('PRE IF ')
+    if request.user == message.owner:
+        print('OWNERSHIP POSITIV')
+        print('NOW DELETE')
+        message.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 
@@ -110,11 +124,6 @@ def register_page(request):
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
-            # Alternatively
-            # user = form.cleaned_data.get('username')
-            # user = user.lower()
-            # raw_password = form.cleaned_data.get('password')
-            # authenticate(username=user, password=raw_password)
             login(request,user)
             return redirect('profile-update' ,request.user.profile.id)
     else:
