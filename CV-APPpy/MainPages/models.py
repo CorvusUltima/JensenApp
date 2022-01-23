@@ -29,9 +29,11 @@ class Room(models.Model):
     created = models.DateTimeField(auto_now_add=True,blank=True,null=True)
     updated=  models.DateTimeField(auto_now=True ,blank=True)
     id = models.UUIDField(default=uuid.uuid4,unique=True,primary_key=True,editable=False)
-   
+    class Meta:
+        ordering=['-updated','-created']
     def __str__(self):
         return f"{self.name}"
+    
 
 class Message(models.Model):
     owner=models.ForeignKey(User,on_delete=models.CASCADE,)
@@ -39,6 +41,7 @@ class Message(models.Model):
     body=models.TextField(max_length=500)
     created = models.DateTimeField(auto_now_add=True)
     updated=  models.DateTimeField(auto_now=True)
-
+    class Meta:
+        ordering=['-updated','-created']
     def __str__(self):
-        return self.body[0:50]
+        return self.body[0:25]

@@ -39,48 +39,10 @@
                 {{profile.bio}}
             </p>
           </div>
-          <div class="settings">
-            <h3 class="settings__title">Skills</h3>
-            <a class="tag tag--pill tag--sub settings__btn tag--lg" href="#"><i class="im im-plus"></i> Add Skill</a>
-          </div>
+       
 
-          <table class="settings__table">
-            <tr>
-              <td class="settings__tableInfo">
-                <h4>JavaScript</h4>
-                <p>
-                  Consectetur adipisicing elit. Natus nam dolore aut sed vitae eos architecto unde tempore
-                  exercitationem fugiat?...
-                </p>
-              </td>
-              <td class="settings__tableActions">
-                <a class="tag tag--pill tag--main settings__btn" href="#"><i class="im im-edit"></i> Edit</a>
-                <a class="tag tag--pill tag--main settings__btn" href="#"><i class="im im-x-mark-circle-o"></i>
-                  Delete</a>
-              </td>
-            </tr>
-          </table>
-          {% for assignment in profile.assignments.all %}
-          <table class="settings__table">
-            <tr>
-              <td class="settings__thumbnail">
-                <a href="{% url 'assignment-details' assignment.id %}">
-                    <img class="project__thumbnail" src="{{assignment.featured_picture.url}}" alt="project.jpg" />
-              </td>
-              <td class="settings__tableInfo">
-                <li>Name: <a href="{% url 'assignment-details' assignment.id %}">{{assignment.title}}</a></li> 
-                <li>Location: {{assignment.location}}  </li>
-                <p>
-                  Do we need this field (DESCRIPTION PLACEHOLDER)
-                </p>
-              </td>
-             
-              <td class="settings__tableActions">
-                <a class="tag tag--pill tag--main settings__btn"   href="{% url 'cancel-assignment' assignment.id %}" onclick="return confirm('Are you sure that you would like to cancel this assignment?')">Cancel</a></li>             
-              </td>
-            </tr>
-          </table>
-          {% endfor %}
+        
+       
 
 
         </div>
