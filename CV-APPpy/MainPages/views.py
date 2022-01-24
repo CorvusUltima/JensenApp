@@ -62,7 +62,9 @@ def create_room(request):
     if request.method=='POST':
         form=RoomForm(request.POST)
         if form.is_valid():
-            form.save()
+            room=form.save(commit=False)
+            room.host=request.user
+            room.save()
     
             return redirect('account')
     context={'form':form}
@@ -94,9 +96,6 @@ def delete_message(request,pk):
         print('NOW DELETE')
         message.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-
-
 
 def login_page(request):
     page = 'login'

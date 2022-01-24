@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from ProfilePages.forms import CreateProfileForm
 from ProfilePages.models import Profile
+from MainPages.models import Message
 
 
 
@@ -12,9 +13,9 @@ def profiles(request):
      return render(request,'ProfilePages/profiles.html')
 
 def profile_page(request,pk):
-
+    room_messages=Message.objects.filter()
     profile = Profile.objects.get(id=pk)  
-    context={'profile':profile}
+    context={'profile':profile,'room_messages':room_messages}
 
     return render(request,'ProfilePages/profile-page.html',context)
 
@@ -37,10 +38,8 @@ def profile_update(request, pk):
 def account(request):
     id = request.user.profile.id
     profile = Profile.objects.get(id = id)
-    print(profile)
-    #assignments = [_ for _ in Assignment.objects.filter(host=request.user)]
-    
-    context = { 'profile' : profile}
+    room_messages=Message.objects.filter()  
+    context = { 'profile' : profile ,'room_messages' : room_messages}
     return render(request,'ProfilePages/account.html',context)
 
 
