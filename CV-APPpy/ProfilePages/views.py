@@ -4,18 +4,21 @@ from django.contrib.auth.decorators import login_required
 
 from ProfilePages.forms import CreateProfileForm
 from ProfilePages.models import Profile
-from MainPages.models import Message
+from MainPages.models import Message , Topic ,Room
+
 
 
 
 # Create your views here.
 def profiles(request):
      return render(request,'ProfilePages/profiles.html')
-
+@login_required(login_url = 'login')
 def profile_page(request,pk):
+    topics=Topic.objects.all()
+    rooms=Room.objects.filter(host=request.user)
     room_messages=Message.objects.filter()
     profile = Profile.objects.get(id=pk)  
-    context={'profile':profile,'room_messages':room_messages}
+    context={'profile':profile,'room_messages':room_messages,'topics':topics,'rooms':rooms}
 
     return render(request,'ProfilePages/profile-page.html',context)
 
