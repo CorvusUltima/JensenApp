@@ -27,9 +27,9 @@
           <!-- Logged In -->
 
           <div class="header__user">
-            <a href="profile.html">
+            <a href="{% url 'profile' request.user.profile.id %}">
               <div class="avatar avatar--medium active">
-                <img src={{ request.user.profile.profile_picture.url }} />
+                <img src="{{ request.user.profile.profile_picture.url }}" />
               </div>
               <p>{{ request.user.first_name }} <span>@{{ request.user.profile.first_name }}</span></p>
             </a>
