@@ -57,7 +57,7 @@ def room (request,pk):
     context={'room': room,'room_messages': room_messages,'participants':participants}
     return render (request, 'MainPages/room.html' , context )
 
-def create_room(request):
+def create_room_old(request):
     form = RoomForm()
     if request.method=='POST':
         form=RoomForm(request.POST)
@@ -70,6 +70,20 @@ def create_room(request):
     context={'form':form}
     return render (request, 'MainPages/room-form.html' , context)
 
+def create_room(request):
+    
+    if request.method=='POST':
+        room=Room.objects.create(
+            host=request.user,
+            topic=Topic.objects.create(name=(request.POST.get('topic'))),
+            name=request.POST.get('room_name'),
+            description=request.POST.get('room_about'),
+            )
+       
+    
+        return redirect('home')
+   
+    return render (request, 'MainPages/room-form.html' )
 
 
 def update_room(request,pk):
