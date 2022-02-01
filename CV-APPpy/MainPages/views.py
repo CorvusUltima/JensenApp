@@ -11,9 +11,9 @@ from django.db.models import Q
 from django.http import HttpRequest, HttpResponseRedirect
 from .models import Message, Room, Topic 
 from .forms import RoomForm
+from django.contrib.auth.decorators import login_required
 
-
-
+@login_required(login_url = 'login')
 def home(request):
     assert isinstance(request, HttpRequest)
     q=request.GET.get('q')  if request.GET.get('q') else ''
